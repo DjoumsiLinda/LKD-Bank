@@ -1,0 +1,171 @@
+.app {
+    min-height: 100vh;
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: 80px 1fr 50px;
+}
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++ fixe img*/
+.app main #fixe-img {
+    position: fixed;
+    left: 50%;
+    top: 70%;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+.app main #fixe-img img {
+    padding: 10px;
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+}
+.app header {
+    background-color: rgba(0, 0, 255, 0.52);
+    grid-column: 1/2;
+    grid-row: 1/2;
+    display: grid;
+    grid-template-columns: 5fr 1fr 1fr 1fr;
+}
+.app header img {
+    width: 80px;
+    height: 80px;
+}
+.app header #home {
+    grid-column: 1/2;
+    grid-row: 1/2;
+}
+.app header #bankBild {
+    grid-column: 3/5;
+    grid-row: 1/2;
+}
+.app header #profileBild {
+    grid-column: 4/5;
+    grid-row: 1/2;
+}
+.app header #signOut {
+    grid-column: 5/5;
+    grid-row: 1/2;
+}
+/*++++++++++++++++++++++++++++++++++++++++++++++++ Menu Home*/
+#overlayHome {
+    position: fixed;
+    left: 0;
+    top: 80px;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0);
+    visibility: hidden;
+}
+#overlayHome .arrow-up {
+    width: 0;
+    height: 30px;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 90px solid white;
+}
+#overlayHome.on {
+    visibility: visible;
+}
+#menuHome {
+    background-color: white;
+    height: 40%;
+    width: 20%;
+    min-height: 150px;
+    max-height: 300px;
+    position: absolute;
+    top: -110px;
+    transform: translateY(50%);
+    border-radius: 50px;
+}
+#menuHome a:nth-child(1) {
+    margin-top: 15px;
+}
+#menuHome a {
+    display: block;
+    font-size: 30px;
+    font-weight: bold;
+    color: blue;
+    padding: 10px 20px;
+}
+/*++++++++++++++++++++++++++++++++++++++++++++++++ Menu Bank*/
+#overlayBank {
+    position: fixed;
+    left: 60%;
+    top: 80px;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0);
+    visibility: hidden;
+}
+#overlayBank .arrow-up {
+    width: 0;
+    height: 30px;
+    border-left: 120px solid transparent;
+    border-right: 100px solid transparent;
+    border-bottom: 150px solid white;
+}
+#overlayBank.on {
+    visibility: visible;
+}
+#menuBank {
+    background-color: white;
+    height: 40%;
+    width: 55%;
+    min-height: 150px;
+    max-height: 300px;
+    position: absolute;
+    top: -110px;
+    transform: translateY(50%);
+    border-radius: 50px;
+}
+#menuBank a:nth-child(1) {
+    margin-top: 15px;
+}
+#menuBank a {
+    display: block;
+    font-size: 30px;
+    font-weight: bold;
+    color: blue;
+    padding: 10px 20px;
+}
+/*++++++++++++++++++++++++++++++++++++++++++++++++ Menu Profile*/
+#overlayProfile {
+    position: fixed;
+    left: 75%;
+    top: 80px;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0);
+    visibility: hidden;
+}
+#overlayProfile .arrow-up {
+    width: 0;
+    height: 30px;
+    border-left: 120px solid transparent;
+    border-right: 100px solid transparent;
+    border-bottom: 150px solid white;
+}
+#overlayProfile.on {
+    visibility: visible;
+}
+#menuProfile {
+    background-color: white;
+    height: 40%;
+    width: 90%;
+    min-height: 150px;
+    max-height: 300px;
+    position: absolute;
+    top: -110px;
+    transform: translateY(50%);
+    border-radius: 50px;
+}
+#menuProfile a:nth-child(1) {
+    margin-top: 15px;
+}
+#menuProfile a {
+    display: block;
+    font-size: 25px;
+    font-weight: bold;
+    color: blue;
+    padding: 10px 20px;
+}

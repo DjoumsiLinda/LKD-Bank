@@ -7,6 +7,15 @@ app.use(compression());
 
 app.use(express.static(path.join(__dirname, "..", "client", "public")));
 
+app.get("/user/id.json", (req, res) => {
+    /*if (req.session) {
+        res.json({ userId: req.session.userId });
+    } else {
+        res.json({ userId: undefined });
+    }*/
+    res.json({ userId: undefined });
+});
+
 app.get("*", function (req, res) {
     res.sendFile(path.join(__dirname, "..", "client", "index.html"));
 });
