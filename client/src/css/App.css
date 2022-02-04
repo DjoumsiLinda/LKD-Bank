@@ -169,3 +169,18 @@
     color: blue;
     padding: 10px 20px;
 }
+.app footer {
+    grid-column: 1/2;
+    border-top: 1px solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+.app footer a {
+    cursor: pointer;
+    text-decoration: underline;
+    color: blue;
+}

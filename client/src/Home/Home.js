@@ -13,28 +13,30 @@ export default function Home() {
                 <a href="/">Register</a>
                 <a href="/">Sign in</a>
             </header>
-            <main>
-                <div id="welcome">
-                    <p>Wilkommen in LKD~Bank!</p>
-                    <p>Stay connected! 😉</p>
-                </div>
-                <div id="slider">
-                    <img src="/assets/geld2.png" className="onscreen" />
-                    <img src="/assets/geld3.png" />
-                    <img src="/assets/gold.png" />
-                    <img src="/assets/geld1.png" />
-                    <img src="/assets/muenze.png" />
-                    <img src="/assets/ueberweisen.png" />
-                </div>
-            </main>
-            <footer>
-                <p>
-                    &copy; 2022 |{" "}
-                    <a href="https://www.linkedin.com/in/linda-motieh-djoumsi-76597b219/">
-                        ldjoumsi@yahoo.com
-                    </a>{" "}
-                </p>
-            </footer>
+            <div id="recht">
+                <main>
+                    <div id="welcome">
+                        <p>Wilkommen in LKD~Bank!</p>
+                        <p>Stay connected! 😉</p>
+                    </div>
+                    <div id="slider">
+                        <img src="/assets/geld2.png" className="onscreen" />
+                        <img src="/assets/geld3.png" />
+                        <img src="/assets/gold.png" />
+                        <img src="/assets/geld1.png" />
+                        <img src="/assets/muenze.png" />
+                        <img src="/assets/ueberweisen.png" />
+                    </div>
+                </main>
+                <footer>
+                    <p>
+                        &copy; 2022 |{" "}
+                        <a href="https://www.linkedin.com/in/linda-motieh-djoumsi-76597b219/">
+                            ldjoumsi@yahoo.com
+                        </a>{" "}
+                    </p>
+                </footer>
+            </div>
         </div>
     );
     function handleClick(e) {
