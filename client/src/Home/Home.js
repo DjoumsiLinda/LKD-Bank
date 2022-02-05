@@ -1,23 +1,45 @@
 import "../css/Home.css";
+import { BrowserRouter, Route } from "react-router-dom";
+
+import Login from "./Login.js";
+import Registration from "./Registration.js";
+import ResetPassword from "./ResetPassword.js";
+
 /* https://www.w3schools.com/howto/howto_js_shrink_header_scroll.asp */
 export default function Home() {
     return (
         <div className="home">
             <header>
-                <a href="/" onClick={handleClick}>
+                <a href="/" onClick={handleClickHome}>
                     <img src="/assets/home.png"></img>
                 </a>
                 <a href="/">Services</a>
                 <a href="/">Beratung</a>
                 <a href="/">Kontakt</a>
-                <a href="/">Register</a>
-                <a href="/">Sign in</a>
+                <a href="/register">Register</a>
+                <a href="/login">Sign in</a>
             </header>
             <div id="recht">
                 <main>
                     <div id="welcome">
-                        <p>Wilkommen in LKD~Bank!</p>
-                        <p>Stay connected! 😉</p>
+                        <BrowserRouter>
+                            <Route exact path="/">
+                                <p>Wilkommen in LKD~Bank!</p>
+                                <p>
+                                    Stay connected! 😉{" "}
+                                    <a href="/login">sign in</a>
+                                </p>
+                            </Route>
+                            <Route exact path="/login">
+                                <Login />
+                            </Route>
+                            <Route exact path="/register">
+                                <Registration />
+                            </Route>
+                            <Route exact path="/password">
+                                <ResetPassword />
+                            </Route>
+                        </BrowserRouter>
                     </div>
                     <div id="slider">
                         <img src="/assets/geld2.png" className="onscreen" />
@@ -39,7 +61,8 @@ export default function Home() {
             </div>
         </div>
     );
-    function handleClick(e) {
+
+    function handleClickHome(e) {
         e.preventDefault();
         console.log("You are Cklick");
         let slider = document.querySelector("main #slider");
