@@ -1,0 +1,10 @@
+#profilePicture {
+    border-bottom: 3px solid rgba(299, 199, 0, 1);
+    background-color: rgba(299, 199, 0, 0.2);
+}
+.profile-picture {
+    cursor: pointer;
+    height: 104.5%;
+    width: 100px;
+    border: 1px solid black;
+}

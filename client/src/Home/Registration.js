@@ -1,22 +1,40 @@
 import "../css/Registration.css";
 import { Link } from "react-router-dom";
 import useForm from "../useForm.js"; //custom Hooks
-import useAuthSubmit from "../useAuthSubmit.js"; //custom Hooks
+import { useState } from "react";
 
 export default function Registration() {
     const [form, handleChange] = useForm({
-        firstname: "",
-        lastname: "",
+        first: "",
+        last: "",
         email: "",
         password: "",
     });
-    const [submit, error] = useAuthSubmit("/registration.json", {
-        first: form.firstname,
-        last: form.lastname,
-        email: form.email,
-        password: form.password,
-    });
+    const [error, setError] = useState(false);
 
+    function handleSubmit(evt) {
+        evt.preventDefault();
+        console.log("handleSubmit");
+
+        fetch("/registration.json", {
+            method: "POST",
+            body: JSON.stringify({
+                first: form.first,
+                last: form.last,
+                email: form.email,
+                password: form.password,
+            }),
+            headers: {
+                "content-type": "application/json",
+            },
+        }).then((res) => {
+            if (res.ok) {
+                location.replace("/");
+            } else {
+                setError(true);
+            }
+        });
+    }
     return (
         <div id="regis">
             <h2>Join LKD~Bank et benefie de 100 euro</h2>
@@ -25,19 +43,19 @@ export default function Registration() {
                     There are already an account with these emails adresse!
                 </p>
             )}
-            <form className="registration" onSubmit={submit}>
+            <form className="registration" onSubmit={handleSubmit}>
                 <input
                     type="text"
-                    name="firstname"
+                    name="first"
                     placeholder="First Name"
-                    value={form.firstname}
+                    value={form.first}
                     onChange={handleChange}
                 />
                 <input
                     type="text"
-                    name="lastname"
+                    name="last"
                     placeholder="Last Name"
-                    value={form.lastname}
+                    value={form.last}
                     onChange={handleChange}
                 />
                 <input

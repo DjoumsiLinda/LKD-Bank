@@ -4,6 +4,7 @@
     display: grid;
     grid-template-rows: 80px 1fr 50px;
 }
+
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++ fixe img*/
 .app main #fixe-img {
     position: fixed;
@@ -24,7 +25,7 @@
     grid-column: 1/2;
     grid-row: 1/2;
     display: grid;
-    grid-template-columns: 5fr 1fr 1fr 1fr;
+    grid-template-columns: 80px 1fr 80px 120px 80px 120px 80px;
 }
 .app header img {
     width: 80px;
@@ -35,15 +36,15 @@
     grid-row: 1/2;
 }
 .app header #bankBild {
-    grid-column: 3/5;
+    grid-column: 3/3;
     grid-row: 1/2;
 }
 .app header #profileBild {
-    grid-column: 4/5;
+    grid-column: 5/5;
     grid-row: 1/2;
 }
 .app header #signOut {
-    grid-column: 5/5;
+    grid-column: 7/7;
     grid-row: 1/2;
 }
 /*++++++++++++++++++++++++++++++++++++++++++++++++ Menu Home*/
@@ -86,11 +87,12 @@
     font-weight: bold;
     color: blue;
     padding: 10px 20px;
+    text-decoration: none;
 }
 /*++++++++++++++++++++++++++++++++++++++++++++++++ Menu Bank*/
 #overlayBank {
     position: fixed;
-    left: 60%;
+    left: 63%;
     top: 80px;
     right: 0;
     bottom: 0;
@@ -127,11 +129,12 @@
     font-weight: bold;
     color: blue;
     padding: 10px 20px;
+    text-decoration: none;
 }
 /*++++++++++++++++++++++++++++++++++++++++++++++++ Menu Profile*/
 #overlayProfile {
     position: fixed;
-    left: 75%;
+    left: 77%;
     top: 80px;
     right: 0;
     bottom: 0;
@@ -168,6 +171,7 @@
     font-weight: bold;
     color: blue;
     padding: 10px 20px;
+    text-decoration: none;
 }
 .app footer {
     grid-column: 1/2;

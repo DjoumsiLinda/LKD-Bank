@@ -30,13 +30,13 @@ export default function Home() {
                                     <a href="/login">sign in</a>
                                 </p>
                             </Route>
-                            <Route exact path="/login">
+                            <Route path="/login">
                                 <Login />
                             </Route>
-                            <Route exact path="/register">
+                            <Route path="/register">
                                 <Registration />
                             </Route>
-                            <Route exact path="/password">
+                            <Route path="/password">
                                 <ResetPassword />
                             </Route>
                         </BrowserRouter>

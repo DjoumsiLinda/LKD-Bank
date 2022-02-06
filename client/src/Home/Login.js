@@ -22,11 +22,6 @@ export default class Login extends Component {
 
     handleSubmit(evt) {
         evt.preventDefault();
-        console.log(
-            "HandleSubmit Login:",
-            this.state.email,
-            this.state.password
-        );
         fetch("/login.json", {
             method: "POST",
             body: JSON.stringify({
@@ -70,7 +65,9 @@ export default class Login extends Component {
                     />
                     <button type="submit">Login</button>
                 </form>
-                <Link to="/password">Reset Password</Link>
+                <Link to="/password" id="link1">
+                    Reset Password
+                </Link>
                 <Link to="/register">Registration</Link>
             </div>
         );

@@ -22,7 +22,9 @@ export default class ResetPassword extends Component {
     }
 
     handleChange(evt) {
+        console.log(evt.target.name, evt.target.value, this.state);
         this.setState({ [evt.target.name]: evt.target.value });
+        console.log(evt.target.name, evt.target.value, this.state);
     }
     handleSubmit(evt) {
         evt.preventDefault();
@@ -95,15 +97,15 @@ export default class ResetPassword extends Component {
             return (
                 <div id="reset">
                     <h2>Reset Password</h2>
-                    <p>
-                        Please enter your email address with which you
-                        registered!
-                    </p>
                     {this.state.error && (
                         <p className="errorstep1">
                             Oups,Sorry sommething is wrong. Please try again!
                         </p>
                     )}
+                    <p>
+                        Please enter your email address with which you
+                        registered!
+                    </p>
                     <form
                         className="resetPassword"
                         onSubmit={this.handleSubmit}
@@ -149,7 +151,7 @@ export default class ResetPassword extends Component {
                         <p>Please enter a new Password</p>
                         <input
                             type="password"
-                            name=" password"
+                            name="password"
                             placeholder="Password"
                             value={this.state.password}
                             onChange={this.handleChange}
