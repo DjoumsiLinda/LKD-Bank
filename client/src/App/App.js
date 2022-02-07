@@ -11,7 +11,10 @@ import Startseite from "./Startseite.js";
 import Profile from "./Profile.js";
 import Logout from "./Logout.js";
 import Uploader from "./Uploader.js";
-import Delete from "./Delete";
+import Transfer from "./Transfer.js";
+import Balance from "./Balance.js";
+import Credit from "./Credit.js";
+import Delete from "./Delete.js";
 
 let user = null;
 const mapStateToProps = (state) => {
@@ -26,25 +29,7 @@ const mapStateToProps = (state) => {
     }
     return { user };
 };
-/*const createReactClass = require("create-react-class");
-const Dropdown = createReactClass({
-    getInitialState() {
-        return {
-            isOpened: false,
-        };
-    },
 
-    handleClickOutside() {
-        this.toggle();
-    },
-
-    toggle() {
-        this.setState({ isOpened: !this.state.isOpened });
-    },
-    render() {
-        return <div>close</div>;
-    },
-});*/
 class App extends Component {
     constructor(props) {
         super(props);
@@ -86,6 +71,19 @@ class App extends Component {
     }
     handleClickMain(evt) {
         evt.preventDefault();
+        evt.stopPropagation();
+        const classOnHome = document.querySelector("#overlayHome");
+        const classOnBank = document.querySelector("#overlayBank");
+        const classOnProfile = document.querySelector("#overlayProfile");
+        if (
+            classOnHome.classList.contains("on") ||
+            classOnBank.classList.contains("on") ||
+            classOnProfile.classList.contains("on")
+        ) {
+            classOnHome.classList.remove("on");
+            classOnBank.classList.remove("on");
+            classOnProfile.classList.remove("on");
+        }
         console.log("Click on Main");
     }
     render() {
@@ -110,9 +108,9 @@ class App extends Component {
                     <div id="overlayBank">
                         <div className="arrow-up"></div>
                         <nav id="menuBank">
-                            <a href="/">Überweisung</a>
-                            <a href="/">Kontostand</a>
-                            <a href="/">Kredit anfordern</a>
+                            <a href="/transfer">Transfer</a>
+                            <a href="/balance">Balance</a>
+                            <a href="/credit">Credit request</a>
                         </nav>
                     </div>
                     <a href="/" id="bankBild" onClick={this.handleBank}>
@@ -149,6 +147,7 @@ class App extends Component {
                                 email={user.email}
                                 status={user.status}
                                 bio={user.bio}
+                                iban={user.iban}
                                 setbio={this.setbio}
                                 componentVisible={this.componentVisible}
                             />
@@ -161,6 +160,19 @@ class App extends Component {
                         </Route>
                         <Route path="/delete">
                             <Delete />
+                        </Route>
+                        <Route path="/transfer">
+                            <Transfer
+                                iban={user.iban}
+                                first={user.first}
+                                last={user.last}
+                            />
+                        </Route>
+                        <Route path="/balance">
+                            <Balance />
+                        </Route>
+                        <Route path="/credit">
+                            <Credit />
                         </Route>
                     </BrowserRouter>
                     {this.state.uploaderVisible && (

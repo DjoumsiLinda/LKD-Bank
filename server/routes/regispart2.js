@@ -40,7 +40,8 @@ router.post(
         if (status) {
             const pass =
                 "https://spicedling.s3.amazonaws.com/" + req.file.filename;
-            db.addStatusAndPass(status, pass, req.session.userId).then(
+            const iban = "DE111111111" + Math.random(1000000000);
+            db.addStatusAndPass(status, pass, req.session.userId, iban).then(
                 (result) => {
                     if (result) {
                         res.sendStatus(200);

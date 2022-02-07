@@ -19,6 +19,7 @@ export default function Profile(props) {
             </div>
             <div id="right">
                 <h2>Status: {props.status}</h2>
+                <p>IBAN: {props.iban}</p>
                 <h2>
                     {props.first} {props.last}
                 </h2>

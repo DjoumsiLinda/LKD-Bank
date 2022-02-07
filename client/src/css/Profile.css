@@ -12,7 +12,9 @@
     margin-bottom: 15px;
 }
 .profile p {
-    font-size: 30px;
+    font-size: 25px;
+    font-style: italic;
+    margin-bottom: 10px;
 }
 .profile #profilePicture {
     cursor: pointer;

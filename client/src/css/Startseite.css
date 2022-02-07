@@ -1,5 +1,6 @@
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++slider*/
 .Startseite #slider {
+    z-index: -1;
     margin-top: 2%;
     height: 550px;
     width: 100%;
