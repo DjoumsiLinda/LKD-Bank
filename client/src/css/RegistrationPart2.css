@@ -1,0 +1,45 @@
+.RegistrationPart2 {
+    margin-top: -10%;
+    font-size: 35px;
+}
+#addBild {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+#yesno {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    margin-top: 12px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+#statusId {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    margin-top: 12px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+#addPass {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+#addPass p {
+    margin-right: 15px;
+}
+.RegistrationPart2 button {
+    background-color: coral;
+    margin-top: 15px;
+    cursor: pointer;
+    border: 2px solid black;
+    font-size: 25px;
+}
+#error {
+    color: red;
+    font-size: 25px;
+}

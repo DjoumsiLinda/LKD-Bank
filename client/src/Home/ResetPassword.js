@@ -9,7 +9,7 @@ export default class ResetPassword extends Component {
         this.state = {
             // 1 = start, 2 = verify, 3 = success
             error: false,
-            step: 1,
+            step: 2,
             email: "",
             code: "",
             password: "",
@@ -93,6 +93,7 @@ export default class ResetPassword extends Component {
         }
     }
     render() {
+        console.log("Pass", this.state.password);
         if (this.state.step === 1) {
             return (
                 <div id="reset">

@@ -44,7 +44,7 @@ export default class Login extends Component {
     render() {
         return (
             <div id="lo">
-                <h2>Join LKD~Bank et beneficie des meilleurs services</h2>
+                <h2>Join LKD~Bank and enjoy the best services</h2>
                 {this.state.error && (
                     <p className="error">Oups, Please try again!</p>
                 )}

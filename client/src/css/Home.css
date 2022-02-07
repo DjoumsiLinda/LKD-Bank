@@ -15,6 +15,7 @@
     grid-column: 1/-3;
 }
 .home main #welcome {
+    height: 20vh;
     font-size: 50px;
     display: flex;
     flex-direction: column;
@@ -24,10 +25,13 @@
 }
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++header*/
 .home header {
-    background-color: rgba(165, 42, 42, 0.623);
+    background-color: rgba(165, 42, 42, 0.479);
     font-size: 30px;
     grid-column: 1/2;
     grid-row: 1/2;
+}
+.home header #headerElement {
+    height: 60%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -43,19 +47,19 @@
     height: 80px;
 }
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++slider*/
-#slider {
-    margin-top: -27%;
-    height: 85%;
+#welcomeSlider #slider {
+    margin-top: -30%;
+    height: 600px;
     width: 100%;
     position: relative;
     overflow: hidden;
     visibility: hidden;
 }
-#slider.on {
+#welcomeSlider #slider.on {
     visibility: visible;
 }
 
-#slider img {
+#welcomeSlider #slider img {
     padding-left: 50px;
     padding-right: 50px;
     width: 100%;
@@ -64,12 +68,12 @@
     /*right: 100%;*/
     bottom: 100%;
 }
-.onscreen {
+#welcomeSlider .onscreen {
     /*transform: translateX(100%);*/
     transform: translateY(100%);
     transition: transform 1s;
 }
-.exit {
+#welcomeSlider .exit {
     /*transform: translateX(200%);*/
     transform: translateY(200%);
     transition: transform 1s;

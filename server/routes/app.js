@@ -85,8 +85,13 @@ router.get("/userProfile/:id.json", (req, res) => {
 });
 
 router.get("/logout.json", (req, res) => {
+    console.log("logout: ", req.session);
     req.session.userId = undefined;
+    console.log("logout: ", req.session);
     res.sendStatus(200);
 });
 
+router.get("/delete.json", s3.s3deleteUrl, (req, res) => {
+    console.log("TODO");
+});
 module.exports = router;

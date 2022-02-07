@@ -18,6 +18,7 @@ export default function Profile(props) {
                 />
             </div>
             <div id="right">
+                <h2>Status: {props.status}</h2>
                 <h2>
                     {props.first} {props.last}
                 </h2>

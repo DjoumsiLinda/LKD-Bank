@@ -5,7 +5,9 @@
     align-items: center;
     justify-items: center;
 }
-
+#lo h2 {
+    text-align: center;
+}
 .login {
     margin-top: 20px;
     display: flex;
@@ -32,7 +34,7 @@
     margin-bottom: 25px;
 }
 #lo a {
-    margin-bottom: 15px;
+    margin-bottom: -15px;
 }
 #lo #link1 {
     margin-bottom: 50px;

@@ -29,9 +29,17 @@ module.exports.addImageInUsersTable = (url, id) => {
         [url, id]
     );
 };
+module.exports.addStatusAndPass = (status, pass, id) => {
+    return db.query(
+        `UPDATE users
+        SET status = $1, pass=$2 
+        WHERE id=$3;`,
+        [status, pass, id]
+    );
+};
 module.exports.getUsers = (id) => {
     return db.query(
-        `SELECT id, first, last, email, url, bio FROM users where id = $1;`,
+        `SELECT id, status, first, last, email, url, bio FROM users where id = $1;`,
         [id]
     );
 };

@@ -8,8 +8,8 @@
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++ fixe img*/
 .app main #fixe-img {
     position: fixed;
-    left: 50%;
-    top: 70%;
+    left: 45%;
+    top: 86%;
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0);

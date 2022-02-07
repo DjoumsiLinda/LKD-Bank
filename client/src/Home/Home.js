@@ -4,27 +4,30 @@ import { BrowserRouter, Route } from "react-router-dom";
 import Login from "./Login.js";
 import Registration from "./Registration.js";
 import ResetPassword from "./ResetPassword.js";
+import RegistrationPart2 from "./RegistrationPart2";
 
 /* https://www.w3schools.com/howto/howto_js_shrink_header_scroll.asp */
 export default function Home() {
     return (
         <div className="home">
             <header>
-                <a href="/" onClick={handleClickHome}>
-                    <img src="/assets/home.png"></img>
-                </a>
-                <a href="/">Services</a>
-                <a href="/">Beratung</a>
-                <a href="/">Kontakt</a>
-                <a href="/register">Register</a>
-                <a href="/login">Sign in</a>
+                <div id="headerElement">
+                    <a href="/" onClick={handleClickHome}>
+                        <img src="/assets/home.png"></img>
+                    </a>
+                    <a href="/">Services</a>
+                    <a href="/">Beratung</a>
+                    <a href="/">Kontakt</a>
+                    <a href="/register">Register</a>
+                    <a href="/login">Sign in</a>
+                </div>
             </header>
             <div id="recht">
                 <main>
                     <div id="welcome">
                         <BrowserRouter>
                             <Route exact path="/">
-                                <p>Wilkommen in LKD~Bank!</p>
+                                <p>Welcome in LKD~Bank!</p>
                                 <p>
                                     Stay connected! 😉{" "}
                                     <a href="/login">sign in</a>
@@ -39,15 +42,20 @@ export default function Home() {
                             <Route path="/password">
                                 <ResetPassword />
                             </Route>
+                            <Route path="/register2">
+                                <RegistrationPart2 />
+                            </Route>
                         </BrowserRouter>
                     </div>
-                    <div id="slider">
-                        <img src="/assets/geld2.png" className="onscreen" />
-                        <img src="/assets/geld3.png" />
-                        <img src="/assets/gold.png" />
-                        <img src="/assets/geld1.png" />
-                        <img src="/assets/muenze.png" />
-                        <img src="/assets/ueberweisen.png" />
+                    <div id="welcomeSlider">
+                        <div id="slider">
+                            <img src="/assets/geld2.png" className="onscreen" />
+                            <img src="/assets/geld3.png" />
+                            <img src="/assets/gold.png" />
+                            <img src="/assets/geld1.png" />
+                            <img src="/assets/muenze.png" />
+                            <img src="/assets/ueberweisen.png" />
+                        </div>
                     </div>
                 </main>
                 <footer>
@@ -65,7 +73,7 @@ export default function Home() {
     function handleClickHome(e) {
         e.preventDefault();
         console.log("You are Cklick");
-        let slider = document.querySelector("main #slider");
+        let slider = document.querySelector("#welcomeSlider #slider");
         open_close(slider);
         let images = slider.getElementsByTagName("img");
         let transitioning = false;

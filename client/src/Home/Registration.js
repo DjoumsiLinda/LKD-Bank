@@ -1,7 +1,9 @@
 import "../css/Registration.css";
+import { BrowserRouter, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 import useForm from "../useForm.js"; //custom Hooks
 import { useState } from "react";
+import RegistrationPart2 from "./RegistrationPart2.js";
 
 export default function Registration() {
     const [form, handleChange] = useForm({
@@ -11,6 +13,7 @@ export default function Registration() {
         password: "",
     });
     const [error, setError] = useState(false);
+    const [step2, setStep2] = useState(false);
 
     function handleSubmit(evt) {
         evt.preventDefault();
@@ -29,52 +32,66 @@ export default function Registration() {
             },
         }).then((res) => {
             if (res.ok) {
-                location.replace("/");
+                console.log("PART");
+                setStep2(true);
+                //location.replace("/register2");
             } else {
                 setError(true);
             }
         });
     }
     return (
-        <div id="regis">
-            <h2>Join LKD~Bank et benefie de 100 euro</h2>
-            {error && (
-                <p className="error">
-                    There are already an account with these emails adresse!
-                </p>
+        <div>
+            {step2 ? (
+                <BrowserRouter>
+                    <Route>
+                        <RegistrationPart2 />
+                    </Route>
+                </BrowserRouter>
+            ) : (
+                <div id="regis">
+                    <h2>Join LKD~Bank and get 100 euro in your account</h2>
+                    {error && (
+                        <p className="error">
+                            There are already an account with these emails
+                            adresse!
+                        </p>
+                    )}
+
+                    <form className="registration" onSubmit={handleSubmit}>
+                        <input
+                            type="text"
+                            name="first"
+                            placeholder="First Name"
+                            value={form.first}
+                            onChange={handleChange}
+                        />
+                        <input
+                            type="text"
+                            name="last"
+                            placeholder="Last Name"
+                            value={form.last}
+                            onChange={handleChange}
+                        />
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="E-Mail-Adresse"
+                            value={form.email}
+                            onChange={handleChange}
+                        />
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="Password"
+                            value={form.password}
+                            onChange={handleChange}
+                        />
+                        <button type="submit">Register</button>
+                    </form>
+                    <Link to="/login">Click here to Log in!</Link>
+                </div>
             )}
-            <form className="registration" onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    name="first"
-                    placeholder="First Name"
-                    value={form.first}
-                    onChange={handleChange}
-                />
-                <input
-                    type="text"
-                    name="last"
-                    placeholder="Last Name"
-                    value={form.last}
-                    onChange={handleChange}
-                />
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="E-Mail-Adresse"
-                    value={form.email}
-                    onChange={handleChange}
-                />
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    value={form.password}
-                    onChange={handleChange}
-                />
-                <button type="submit">Register</button>
-            </form>
-            <Link to="/login">Click here to Log in!</Link>
         </div>
     );
 }

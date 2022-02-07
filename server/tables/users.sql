@@ -14,6 +14,8 @@ CREATE TABLE users(
       password VARCHAR NOT NULL CHECK (password != ''),
       url VARCHAR ,
       bio TEXT,
+      status TEXT,
+      pass VARCHAR,
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 INSERT INTO users (first, last, email, password, bio) VALUES (

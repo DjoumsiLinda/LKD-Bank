@@ -1,12 +1,18 @@
 import "../css/App.css";
 import { BrowserRouter, Route } from "react-router-dom";
 import { Component } from "react";
+
 import { connect } from "react-redux";
 import { receivedUsers } from "../redux/users/slice";
 import { setbioHook } from "../redux/bio/slice";
 import { seturlHook } from "../redux/url/slice";
+
+import Startseite from "./Startseite.js";
 import Profile from "./Profile.js";
+import Logout from "./Logout.js";
 import Uploader from "./Uploader.js";
+import Delete from "./Delete";
+
 let user = null;
 const mapStateToProps = (state) => {
     if (state.users && state.users.id !== 0) {
@@ -20,7 +26,25 @@ const mapStateToProps = (state) => {
     }
     return { user };
 };
+/*const createReactClass = require("create-react-class");
+const Dropdown = createReactClass({
+    getInitialState() {
+        return {
+            isOpened: false,
+        };
+    },
 
+    handleClickOutside() {
+        this.toggle();
+    },
+
+    toggle() {
+        this.setState({ isOpened: !this.state.isOpened });
+    },
+    render() {
+        return <div>close</div>;
+    },
+});*/
 class App extends Component {
     constructor(props) {
         super(props);
@@ -34,6 +58,7 @@ class App extends Component {
         this.handleHome = this.handleHome.bind(this);
         this.handleProfile = this.handleProfile.bind(this);
         this.open_close = this.open_close.bind(this);
+        this.handleClickMain = this.handleClickMain.bind(this);
         this.setbio = this.setbio.bind(this);
     }
     componentDidMount() {
@@ -59,7 +84,10 @@ class App extends Component {
     setbio(bio) {
         this.props.setbioHook(bio);
     }
-
+    handleClickMain(evt) {
+        evt.preventDefault();
+        console.log("Click on Main");
+    }
     render() {
         if (!user) {
             return <p>Loading...</p>;
@@ -70,10 +98,10 @@ class App extends Component {
                     <div id="overlayHome">
                         <div className="arrow-up"></div>
                         <nav id="menuHome">
-                            <a href="/">Über uns</a>
-                            <a href="/">Services</a>
-                            <a href="/">Kontakt</a>
-                            <a href="/">Beratung</a>
+                            <a href="/home">Über uns</a>
+                            <a href="/home">Services</a>
+                            <a href="/home">Kontakt</a>
+                            <a href="/home">Beratung</a>
                         </nav>
                     </div>
                     <a href="/" id="home" onClick={this.handleHome}>
@@ -84,7 +112,7 @@ class App extends Component {
                         <nav id="menuBank">
                             <a href="/">Überweisung</a>
                             <a href="/">Kontostand</a>
-                            <a href="/">...</a>
+                            <a href="/">Kredit anfordern</a>
                         </nav>
                     </div>
                     <a href="/" id="bankBild" onClick={this.handleBank}>
@@ -94,8 +122,7 @@ class App extends Component {
                         <div className="arrow-up"></div>
                         <nav id="menuProfile">
                             <a href="/profile">Profile bearbeiten</a>
-                            <a href="/">Change your profile</a>
-                            <a href="/">...</a>
+                            <a href="/delete">Delete your account</a>
                         </nav>
                     </div>
                     <a
@@ -105,15 +132,14 @@ class App extends Component {
                     >
                         <img src="/assets/profile.png"></img>
                     </a>
-                    <a href="/" id="signOut">
+                    <a href="/logout" id="signOut">
                         <img src="/assets/sign-out.png"></img>
                     </a>
                 </header>
-                <main>
+                <main onClick={this.handleClickMain}>
                     <BrowserRouter>
                         <Route exact path="/">
-                            <h1>LKD~Bank</h1>
-                            <p>LKD~Bank is the best Bank. Stay connected!</p>
+                            <h1>Überweisung Link here</h1>
                         </Route>
                         <Route exact path="/profile">
                             <Profile
@@ -121,10 +147,20 @@ class App extends Component {
                                 first={user.first}
                                 last={user.last}
                                 email={user.email}
+                                status={user.status}
                                 bio={user.bio}
                                 setbio={this.setbio}
                                 componentVisible={this.componentVisible}
                             />
+                        </Route>
+                        <Route path="/logout">
+                            <Logout />
+                        </Route>
+                        <Route path="/home">
+                            <Startseite />
+                        </Route>
+                        <Route path="/delete">
+                            <Delete />
                         </Route>
                     </BrowserRouter>
                     {this.state.uploaderVisible && (

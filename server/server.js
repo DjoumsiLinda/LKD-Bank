@@ -6,6 +6,7 @@ const path = require("path");
 
 const appRouter = require("./routes/app.js");
 const registration = require("./routes/registration.js");
+const regis_part2 = require("./routes/regispart2.js");
 const login = require("./routes/login.js");
 const resetPassword = require("./routes/resetPassword.js");
 
@@ -37,6 +38,7 @@ app.use(express.json());
 
 app.use(appRouter);
 app.use(registration);
+app.use(regis_part2);
 app.use(login);
 app.use(resetPassword);
 
