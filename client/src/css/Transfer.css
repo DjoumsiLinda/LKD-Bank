@@ -1,0 +1,110 @@
+.transfer {
+    font-size: 30px;
+    width: 100%;
+    height: 120vh;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+}
+#user_info p {
+    margin-top: 20px;
+}
+#transfer_bereich {
+    width: 70%;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+}
+#transfer_bereich div {
+    margin-bottom: 20px;
+}
+/*+++++++++++++++++++++++++++++++++++++++++++++ beneficiary*/
+#beneficiary label {
+    margin-right: 20px;
+}
+#beneficiary input {
+    width: 50%;
+    height: 30px;
+}
+/*+++++++++++++++++++++++++++++++++++++++++++++ iban*/
+#iban label {
+    margin-right: 20px;
+}
+#iban input {
+    width: 50%;
+    height: 30px;
+}
+/*+++++++++++++++++++++++++++++++++++++++++++++ amount*/
+#amount {
+    display: flex;
+    flex-direction: row;
+}
+#amount p {
+    margin-right: 20px;
+}
+#amount input {
+    cursor: pointer;
+    width: 20%;
+    height: 30px;
+    margin-top: 5px;
+    margin-right: 50px;
+}
+#amount input :focus {
+    background-color: crimson;
+}
+/*+++++++++++++++++++++++++++++++++++++++++++++ purpose*/
+#purpose label {
+    margin-right: 20px;
+}
+#purpose input {
+    cursor: inherit;
+    width: 50%;
+    height: 30px;
+}
+/*+++++++++++++++++++++++++++++++++++++++++++++ date*/
+#date {
+    display: flex;
+    flex-direction: row;
+}
+#date p {
+    margin-right: 20px;
+}
+#date input {
+    cursor: pointer;
+    margin-top: 5px;
+    margin-right: 50px;
+    height: 30px;
+}
+#date input:focus:invalid + span::after {
+    content: "✖";
+}
+
+#date input:focus + span::after {
+    content: "✓";
+}
+
+/*+++++++++++++++++++++++++++++++++++++++++++++ time*/
+#time {
+    display: flex;
+    flex-direction: row;
+}
+#time p {
+    margin-right: 20px;
+}
+#time input {
+    width: 20%;
+    cursor: pointer;
+    margin-top: 5px;
+    margin-right: 50px;
+    height: 30px;
+}
+form button {
+    font-size: 25px;
+    cursor: pointer;
+    width: 120px;
+    cursor: 0;
+    height: 35px;
+    border: 2px solid black;
+    background-color: greenyellow;
+}

@@ -5,6 +5,7 @@ const router = express.Router();
 const s3 = require("../s3.js");
 const multer = require("multer");
 const uidSafe = require("uid-safe");
+const IBAN = require("iban");
 
 const diskStorage = multer.diskStorage({
     destination: function (req, file, callback) {
@@ -40,7 +41,7 @@ router.post(
         if (status) {
             const pass =
                 "https://spicedling.s3.amazonaws.com/" + req.file.filename;
-            const iban = "DE111111111" + Math.random(1000000000);
+            const iban = IBAN.random();
             db.addStatusAndPass(status, pass, req.session.userId, iban).then(
                 (result) => {
                     if (result) {

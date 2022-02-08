@@ -8,7 +8,7 @@
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++ fixe img*/
 .app main #fixe-img {
     position: fixed;
-    left: 45%;
+    left: 96%;
     top: 86%;
     right: 0;
     bottom: 0;
@@ -52,8 +52,6 @@
     position: fixed;
     left: 0;
     top: 80px;
-    right: 0;
-    bottom: 0;
     background-color: rgba(0, 0, 0, 0);
     visibility: hidden;
 }
@@ -69,10 +67,8 @@
 }
 #menuHome {
     background-color: white;
-    height: 40%;
-    width: 20%;
-    min-height: 150px;
-    max-height: 300px;
+    width: 250px;
+    height: 280px;
     position: absolute;
     top: -110px;
     transform: translateY(50%);
@@ -94,8 +90,6 @@
     position: fixed;
     left: 63%;
     top: 80px;
-    right: 0;
-    bottom: 0;
     background-color: rgba(0, 0, 0, 0);
     visibility: hidden;
 }
@@ -111,12 +105,10 @@
 }
 #menuBank {
     background-color: white;
-    height: 40%;
-    width: 55%;
-    min-height: 150px;
-    max-height: 300px;
+    width: 270px;
+    height: 220px;
     position: absolute;
-    top: -110px;
+    top: -80px;
     transform: translateY(50%);
     border-radius: 50px;
 }
@@ -136,29 +128,25 @@
     position: fixed;
     left: 77%;
     top: 80px;
-    right: 0;
-    bottom: 0;
     background-color: rgba(0, 0, 0, 0);
     visibility: hidden;
 }
 #overlayProfile .arrow-up {
-    width: 0;
+    width: 0px;
     height: 30px;
     border-left: 120px solid transparent;
-    border-right: 100px solid transparent;
-    border-bottom: 150px solid white;
+    border-right: 110px solid transparent;
+    border-bottom: 120px solid white;
 }
 #overlayProfile.on {
     visibility: visible;
 }
 #menuProfile {
     background-color: white;
-    height: 40%;
-    width: 90%;
-    min-height: 150px;
-    max-height: 300px;
+    width: 260px;
+    height: 150px;
     position: absolute;
-    top: -110px;
+    top: -60px;
     transform: translateY(50%);
     border-radius: 50px;
 }

@@ -55,11 +55,11 @@ export default function RegistrationPart2() {
                             body: formData2,
                         }).then((res) => {
                             if (res.ok) {
-                                location.replace("/");
+                                location.replace("/transfer");
                             }
                         });
                     }
-                    location.replace("/");
+                    location.replace("/transfer");
                 }
             });
         }

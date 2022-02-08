@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { receivedUsers } from "../redux/users/slice";
 import { setbioHook } from "../redux/bio/slice";
 import { seturlHook } from "../redux/url/slice";
+import { setbalanceHook } from "../redux/balance/slice";
 
 import Startseite from "./Startseite.js";
 import Profile from "./Profile.js";
@@ -27,6 +28,9 @@ const mapStateToProps = (state) => {
     if (state.url && state.url !== "") {
         user = { ...user, url: state.url };
     }
+    if (state.balance && state.balance !== 0) {
+        user = { ...user, balance: state.balance.balance };
+    }
     return { user };
 };
 
@@ -44,6 +48,7 @@ class App extends Component {
         this.handleProfile = this.handleProfile.bind(this);
         this.open_close = this.open_close.bind(this);
         this.handleClickMain = this.handleClickMain.bind(this);
+        this.setbalance = this.setbalance.bind(this);
         this.setbio = this.setbio.bind(this);
     }
     componentDidMount() {
@@ -69,9 +74,10 @@ class App extends Component {
     setbio(bio) {
         this.props.setbioHook(bio);
     }
-    handleClickMain(evt) {
-        evt.preventDefault();
-        evt.stopPropagation();
+    setbalance(balance) {
+        this.props.setbalanceHook(balance);
+    }
+    handleClickMain() {
         const classOnHome = document.querySelector("#overlayHome");
         const classOnBank = document.querySelector("#overlayBank");
         const classOnProfile = document.querySelector("#overlayProfile");
@@ -84,8 +90,8 @@ class App extends Component {
             classOnBank.classList.remove("on");
             classOnProfile.classList.remove("on");
         }
-        console.log("Click on Main");
     }
+
     render() {
         if (!user) {
             return <p>Loading...</p>;
@@ -96,10 +102,10 @@ class App extends Component {
                     <div id="overlayHome">
                         <div className="arrow-up"></div>
                         <nav id="menuHome">
-                            <a href="/home">Über uns</a>
                             <a href="/home">Services</a>
-                            <a href="/home">Kontakt</a>
-                            <a href="/home">Beratung</a>
+                            <a href="/home">Contact</a>
+                            <a href="/home">FAQ</a>
+                            <a href="/home">Consulting</a>
                         </nav>
                     </div>
                     <a href="/" id="home" onClick={this.handleHome}>
@@ -108,7 +114,7 @@ class App extends Component {
                     <div id="overlayBank">
                         <div className="arrow-up"></div>
                         <nav id="menuBank">
-                            <a href="/transfer">Transfer</a>
+                            <a href="/transfer">Transfer money</a>
                             <a href="/balance">Balance</a>
                             <a href="/credit">Credit request</a>
                         </nav>
@@ -119,7 +125,7 @@ class App extends Component {
                     <div id="overlayProfile">
                         <div className="arrow-up"></div>
                         <nav id="menuProfile">
-                            <a href="/profile">Profile bearbeiten</a>
+                            <a href="/profile">Profile edit</a>
                             <a href="/delete">Delete your account</a>
                         </nav>
                     </div>
@@ -137,9 +143,15 @@ class App extends Component {
                 <main onClick={this.handleClickMain}>
                     <BrowserRouter>
                         <Route exact path="/">
-                            <h1>Überweisung Link here</h1>
+                            <Transfer
+                                iban={user.iban}
+                                first={user.first}
+                                last={user.last}
+                                balance={user.balance}
+                                setbalance={this.setbalance}
+                            />
                         </Route>
-                        <Route exact path="/profile">
+                        <Route path="/profile">
                             <Profile
                                 picture={user.url}
                                 first={user.first}
@@ -166,29 +178,28 @@ class App extends Component {
                                 iban={user.iban}
                                 first={user.first}
                                 last={user.last}
+                                balance={user.balance}
+                                setbalance={this.setbalance}
                             />
                         </Route>
                         <Route path="/balance">
-                            <Balance />
+                            <Balance
+                                iban={user.iban}
+                                first={user.first}
+                                last={user.last}
+                                balance={user.balance}
+                            />
                         </Route>
                         <Route path="/credit">
-                            <Credit />
+                            <Credit
+                                status={user.status}
+                                setbalance={this.setbalance}
+                            />
                         </Route>
                     </BrowserRouter>
                     {this.state.uploaderVisible && (
                         <Uploader componentVisible={this.componentVisible} />
                     )}
-                    <div id="fixe-img">
-                        <a href="/">
-                            <img href="/" src="/assets/home.png"></img>
-                        </a>
-                        <a href="/">
-                            <img href="/" src="/assets/bank.png"></img>
-                        </a>
-                        <a href="/">
-                            <img src="/assets/profile.png"></img>
-                        </a>
-                    </div>
                 </main>
                 <footer>
                     <p>
@@ -240,4 +251,5 @@ export default connect(mapStateToProps, {
     receivedUsers,
     setbioHook,
     seturlHook,
+    setbalanceHook,
 })(App);

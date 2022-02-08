@@ -15,9 +15,9 @@ export default function Home() {
                     <a href="/" onClick={handleClickHome}>
                         <img src="/assets/home.png"></img>
                     </a>
-                    <a href="/">Services</a>
-                    <a href="/">Beratung</a>
-                    <a href="/">Kontakt</a>
+                    <a href="/">Contact</a>
+                    <a href="/">Consulting</a>
+                    <a href="/">FAQ</a>
                     <a href="/register">Register</a>
                     <a href="/login">Sign in</a>
                 </div>
@@ -49,10 +49,10 @@ export default function Home() {
                     </div>
                     <div id="welcomeSlider">
                         <div id="slider">
-                            <img src="/assets/geld2.png" className="onscreen" />
-                            <img src="/assets/geld3.png" />
+                            <img src="/assets/geld3.png" className="onscreen" />
                             <img src="/assets/gold.png" />
                             <img src="/assets/geld1.png" />
+                            <img src="/assets/sparrkonto.png" />
                             <img src="/assets/muenze.png" />
                             <img src="/assets/ueberweisen.png" />
                         </div>

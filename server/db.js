@@ -39,7 +39,7 @@ module.exports.addStatusAndPass = (status, pass, id, iban) => {
 };
 module.exports.getUsers = (id) => {
     return db.query(
-        `SELECT id, status, iban, first, last, email, url, bio FROM users where id = $1;`,
+        `SELECT id, first, last, email, url, bio, status, iban,balance FROM users where id = $1;`,
         [id]
     );
 };
@@ -69,6 +69,33 @@ module.exports.addBio = (bio, id) => {
         [bio, id]
     );
 };
+module.exports.minusBalance = (id, balance) => {
+    return db.query(
+        `UPDATE users
+        SET balance = balance-$2 
+        WHERE id=$1
+        RETURNING balance;`,
+        [id, balance]
+    );
+};
+module.exports.plusBalance = (iban, amount) => {
+    return db.query(
+        `UPDATE users
+        SET balance = balance + $2
+        WHERE iban=$1
+        RETURNING balance;`,
+        [iban, amount]
+    );
+};
+module.exports.plusCredit = (id, amount) => {
+    return db.query(
+        `UPDATE users
+        SET balance = balance + $2
+        WHERE id=$1
+        RETURNING balance;`,
+        [id, amount]
+    );
+};
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ reset_password table
 module.exports.addCode = (email, code, users_id) => {
@@ -88,4 +115,45 @@ module.exports.getCode = (CodeId) => {
 
 module.exports.deleteCode = (id) => {
     return db.query(`delete from reset_password where id=$1`, [id]);
+};
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ transfert table
+module.exports.addTransfer = (
+    sender_name,
+    amount,
+    iban,
+    date,
+    time,
+    purpose,
+    users_id
+) => {
+    return db.query(
+        `INSERT INTO transfer (sender_name,
+            amount,
+            iban,
+            transfer_date,
+            transfer_time,
+            purpose,
+            users_id)
+        VALUES($1, $2, $3, $4, $5, $6, $7)
+        RETURNING id;`,
+        [sender_name, amount, iban, date, time, purpose, users_id]
+    );
+};
+module.exports.getTransfer = (id) => {
+    return db.query(`SELECT *  FROM transfer where users_id=$1;`, [id]);
+};
+module.exports.getReceivedTransfer = (iban) => {
+    return db.query(`SELECT *  FROM transfer where iban=$1;`, [iban]);
+};
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ credit table
+module.exports.addCredit = (amount, users_id) => {
+    return db.query(
+        `INSERT INTO credit (
+            amount,
+            users_id)
+        VALUES($1, $2)
+        RETURNING id;`,
+        [amount, users_id]
+    );
 };

@@ -9,7 +9,7 @@ export default class ResetPassword extends Component {
         this.state = {
             // 1 = start, 2 = verify, 3 = success
             error: false,
-            step: 2,
+            step: 1,
             email: "",
             code: "",
             password: "",

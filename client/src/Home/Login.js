@@ -33,7 +33,7 @@ export default class Login extends Component {
             },
         }).then((res) => {
             if (res.ok) {
-                location.href = "/";
+                location.href = "/transfer";
             } else {
                 this.setState({ error: true });
                 this.setState({ email: "", password: "" });

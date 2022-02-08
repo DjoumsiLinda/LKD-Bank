@@ -25,7 +25,7 @@
 }
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++header*/
 .home header {
-    background-color: rgba(165, 42, 42, 0.479);
+    background-color: chocolate;
     font-size: 30px;
     grid-column: 1/2;
     grid-row: 1/2;
@@ -39,8 +39,10 @@
     justify-content: flex-start;
     justify-content: space-between;
 }
-.header a {
+.home header a {
+    width: 100px;
     text-decoration: none;
+    text-align: left;
 }
 .home header img {
     width: 80px;

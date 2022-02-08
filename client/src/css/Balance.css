@@ -1,0 +1,12 @@
+.balance {
+    height: 100vh;
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.balance p {
+    margin-bottom: 20px;
+}
