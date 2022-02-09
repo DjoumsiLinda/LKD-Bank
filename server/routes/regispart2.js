@@ -5,7 +5,6 @@ const router = express.Router();
 const s3 = require("../s3.js");
 const multer = require("multer");
 const uidSafe = require("uid-safe");
-const IBAN = require("iban");
 
 const diskStorage = multer.diskStorage({
     destination: function (req, file, callback) {
@@ -29,22 +28,21 @@ router.post(
     uploader.single("pass"),
     s3.s3Uploader,
     (req, res) => {
-        console.log(req.file);
         if (!req.file) {
             res.sendStatus(500);
         }
-        const { status } = req.body;
-        console.log("Server:", status);
-        if (!status) {
+        const { status, age, city, userId } = req.body;
+        if (!status || !age || !city || !userId) {
             res.sendStatus(500);
         }
         if (status) {
             const pass =
                 "https://spicedling.s3.amazonaws.com/" + req.file.filename;
-            const iban = IBAN.random();
-            db.addStatusAndPass(status, pass, req.session.userId, iban).then(
+            const iban = writeIBAN();
+            db.addStatusAndPass(status, pass, userId, iban, age, city).then(
                 (result) => {
                     if (result) {
+                        req.session.userId = userId;
                         res.sendStatus(200);
                     }
                 }
@@ -57,12 +55,12 @@ router.post(
     uploader.single("pic"),
     s3.s3Uploader,
     (req, res) => {
-        console.log(req.file);
         if (!req.file) {
             res.sendStatus(500);
         }
+        const { userId } = req.body;
         const url = "https://spicedling.s3.amazonaws.com/" + req.file.filename;
-        db.addImageInUsersTable(url, req.session.userId)
+        db.addImageInUsersTable(url, userId)
             .then((result) => {
                 if (result) {
                     res.json(url);
@@ -75,3 +73,18 @@ router.post(
     }
 );
 module.exports = router;
+function writeIBAN() {
+    var ktnr, iban;
+    var pruef, pruef2;
+    ktnr = Math.round(Math.random() * 8999999) + 1000000;
+    pruef = ktnr * 1000000 + 43;
+    pruef2 = pruef % 97;
+    pruef = 98 - pruef2;
+    if (pruef > 9) {
+        iban = "DE";
+    } else {
+        iban = "DE0";
+    }
+    iban = iban + pruef + "70050000" + "000" + ktnr;
+    return iban;
+}

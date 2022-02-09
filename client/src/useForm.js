@@ -10,5 +10,5 @@ export default function useForm(initialValues) {
         setForm({ ...form, [evt.target.name]: evt.target.value });
     }
 
-    return [form, handleChange];
+    return [form, handleChange, setForm];
 }

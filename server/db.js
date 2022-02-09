@@ -29,17 +29,18 @@ module.exports.addImageInUsersTable = (url, id) => {
         [url, id]
     );
 };
-module.exports.addStatusAndPass = (status, pass, id, iban) => {
+module.exports.addStatusAndPass = (status, pass, id, iban, age, city) => {
     return db.query(
         `UPDATE users
-        SET status = $1, pass=$2, iban=$4
+        SET status = $1, pass=$2, iban=$4, age=$5, city=$6, balance=100
         WHERE id=$3;`,
-        [status, pass, id, iban]
+        [status, pass, id, iban, age, city]
     );
 };
 module.exports.getUsers = (id) => {
     return db.query(
-        `SELECT id, first, last, email, url, bio, status, iban,balance FROM users where id = $1;`,
+        `SELECT id, first, last, age, city, email, url, bio, status, iban,balance, 
+        (select sum (amount) as credit from credit where users_id=$1 ) FROM users where id = $1;`,
         [id]
     );
 };
@@ -96,6 +97,42 @@ module.exports.plusCredit = (id, amount) => {
         [id, amount]
     );
 };
+module.exports.updateUsersWithPassword = (
+    first,
+    last,
+    city,
+    age,
+    email,
+    password,
+    id,
+    status
+) => {
+    return db.query(
+        `UPDATE users
+        SET first = $1, last = $2,city=$3, age=$4, email = $5, password = $6, status=$8
+        WHERE id = $7;`,
+        [first, last, city, age, email, password, id, status]
+    );
+};
+module.exports.updateUsersWithoutPassword = (
+    first,
+    last,
+    city,
+    age,
+    email,
+    id,
+    status
+) => {
+    return db.query(
+        `UPDATE users
+        SET first = $1, last = $2,city=$3, age=$4, email = $5, status=$7
+        WHERE id = $6;`,
+        [first, last, city, age, email, id, status]
+    );
+};
+module.exports.deleteUsers = (id) => {
+    return db.query(`delete from users where id=$1`, [id]);
+};
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ reset_password table
 module.exports.addCode = (email, code, users_id) => {
@@ -146,6 +183,9 @@ module.exports.getTransfer = (id) => {
 module.exports.getReceivedTransfer = (iban) => {
     return db.query(`SELECT *  FROM transfer where iban=$1;`, [iban]);
 };
+module.exports.deleteTransfer = (id) => {
+    return db.query(`delete from transfer where users_id=$1`, [id]);
+};
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ credit table
 module.exports.addCredit = (amount, users_id) => {
     return db.query(
@@ -156,4 +196,7 @@ module.exports.addCredit = (amount, users_id) => {
         RETURNING id;`,
         [amount, users_id]
     );
+};
+module.exports.deleteCredit = (id) => {
+    return db.query(`delete from credit where users_id=$1`, [id]);
 };

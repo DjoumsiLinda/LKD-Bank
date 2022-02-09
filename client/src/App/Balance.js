@@ -31,36 +31,106 @@ export default function Balance(props) {
     }
     return (
         <div className="balance">
-            <p>
+            <h2>
                 {props.first} {props.last}
-            </p>
-            <p>{props.iban}</p>
-            <p>Your account Balance: {props.balance} €</p>
+            </h2>
+            <p id="iban">{props.iban}</p>
+            <p>Your account balance: {props.balance} €</p>
             {listTransfer.length === 0 ? (
-                <p>not found</p>
+                <p>no transaction</p>
             ) : (
-                <div>
+                <div id="listTransfer">
                     <p>List of your accomplished transfers:</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>IBAN</th>
+                                <th>Amount</th>
+                                <th>Purpose</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                            </tr>
+                        </thead>
+                    </table>
                     {listTransfer.map((transation) => {
                         return (
                             <div key={transation.id}>
-                                {transation.sender_name}:{transation.amount} €{" "}
-                                {transation.transfer_time}
+                                <table>
+                                    <tr>
+                                        <td>{transation.sender_name}</td>
+                                        <td>{transation.iban}</td>
+                                        <td>-{transation.amount}€</td>
+                                        <td>{transation.purpose}</td>
+                                        <td>
+                                            {new Intl.DateTimeFormat([
+                                                "ban",
+                                                "id",
+                                            ]).format(
+                                                new Date(
+                                                    transation.transfer_date
+                                                )
+                                            )}
+                                        </td>
+                                        <td>
+                                            {new Intl.DateTimeFormat("en-GB", {
+                                                timeStyle: "short",
+                                            }).format(
+                                                new Date(
+                                                    transation.transfer_date
+                                                )
+                                            ) || transation.transfer_time}
+                                        </td>
+                                    </tr>
+                                </table>
                             </div>
                         );
                     })}
                 </div>
             )}
             {listReceived.length === 0 ? (
-                <p>not found</p>
+                <p>no transaction</p>
             ) : (
-                <div>
+                <div id="receivedTransfer">
                     <p>List of your received transfers:</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>IBAN</th>
+                                <th>Amount</th>
+                                <th>Purpose</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                            </tr>
+                        </thead>
+                    </table>
                     {listReceived.map((received) => {
                         return (
                             <div key={received.id}>
-                                {received.sender_name}:{received.amount} €{" "}
-                                {received.transfer_time}
+                                <table>
+                                    <tr>
+                                        <td>{received.sender_name}</td>
+                                        <td>{received.iban}</td>
+                                        <td>+{received.amount}€</td>
+                                        <td>{received.purpose}</td>
+                                        <td>
+                                            {new Intl.DateTimeFormat([
+                                                "ban",
+                                                "id",
+                                            ]).format(
+                                                new Date(received.transfer_date)
+                                            )}
+                                        </td>
+                                        <td>
+                                            {new Intl.DateTimeFormat("en-GB", {
+                                                timeStyle: "short",
+                                            }).format(
+                                                new Date(received.transfer_date)
+                                            ) || received.transfer_time}
+                                        </td>
+                                    </tr>
+                                </table>
                             </div>
                         );
                     })}

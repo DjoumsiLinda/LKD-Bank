@@ -3,12 +3,12 @@ import useForm from "../useForm.js"; //custom Hooks
 
 export default function Balance(props) {
     const [form, handleChange] = useForm({
-        credit: 0,
+        credit: 0.0,
     });
     let max = 0;
-    if (props.status === "student") {
+    if (props.status === "Student") {
         max = 100;
-    } else if (props.status === "beruf") {
+    } else if (props.status === "Worker") {
         max = 1000;
     } else {
         max = 2000;
@@ -37,22 +37,29 @@ export default function Balance(props) {
     }
     return (
         <div className="credit">
-            <p>
-                You are {props.status} and you can borrow maximale {max} euro!
-            </p>
+            <div id="einBlock">
+                <p>You are </p>
+                <h2> {props.status} </h2>
+                <p> and you can borrow maximale</p>
+                <h2>{max}</h2>
+                <p> euro!</p>
+            </div>
+            <p>Aktuel credit: {props.credit || 0}€</p>
+
             <form onSubmit={handleSubmit}>
                 <p>How much do you want to lend to the bank?</p>
                 <div>
-                    {" "}
                     <input
                         type="number"
                         name="credit"
                         value={form.credit}
                         onChange={handleChange}
-                        max={max}
+                        max={max - props.credit}
                         required
                     ></input>
-                    <button type="submit">Apply</button>
+                    <button id="submit" type="submit">
+                        Apply
+                    </button>
                 </div>
             </form>
         </div>

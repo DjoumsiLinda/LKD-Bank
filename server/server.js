@@ -8,6 +8,7 @@ const appRouter = require("./routes/app.js");
 const registration = require("./routes/registration.js");
 const regis_part2 = require("./routes/regispart2.js");
 const login = require("./routes/login.js");
+const profileEdit = require("./routes/profileEdit.js");
 const transfer = require("./routes/transfer.js");
 const credit = require("./routes/credit.js");
 const resetPassword = require("./routes/resetPassword.js");
@@ -44,6 +45,7 @@ app.use(regis_part2);
 app.use(login);
 app.use(credit);
 app.use(transfer);
+app.use(profileEdit);
 app.use(resetPassword);
 
 app.get("/user/id.json", (req, res) => {

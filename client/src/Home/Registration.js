@@ -14,6 +14,7 @@ export default function Registration() {
     });
     const [error, setError] = useState(false);
     const [step2, setStep2] = useState(false);
+    const [userId, setUserId] = useState("");
 
     function handleSubmit(evt) {
         evt.preventDefault();
@@ -30,22 +31,27 @@ export default function Registration() {
             headers: {
                 "content-type": "application/json",
             },
-        }).then((res) => {
-            if (res.ok) {
-                console.log("PART");
+        })
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                    //location.replace("/register2");
+                } else {
+                    setError(true);
+                }
+            })
+            .then((userId) => {
+                console.log("PART+++++++", userId);
                 setStep2(true);
-                //location.replace("/register2");
-            } else {
-                setError(true);
-            }
-        });
+                setUserId(userId);
+            });
     }
     return (
         <div>
             {step2 ? (
                 <BrowserRouter>
                     <Route>
-                        <RegistrationPart2 />
+                        <RegistrationPart2 userId={userId} />
                     </Route>
                 </BrowserRouter>
             ) : (

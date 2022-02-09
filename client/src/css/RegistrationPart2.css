@@ -1,11 +1,17 @@
 .RegistrationPart2 {
-    margin-top: -10%;
     font-size: 35px;
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    align-content: center;
 }
 #addBild {
     display: flex;
     flex-direction: row;
     margin-bottom: 10px;
+}
+#addBild p {
+    margin-bottom: 15px;
 }
 #yesno {
     cursor: pointer;
@@ -31,9 +37,10 @@
 }
 #addPass p {
     margin-right: 15px;
+    margin-bottom: 15px;
 }
 .RegistrationPart2 button {
-    background-color: coral;
+    background-color: chocolate;
     margin-top: 15px;
     cursor: pointer;
     border: 2px solid black;
@@ -42,4 +49,20 @@
 #error {
     color: red;
     font-size: 25px;
+}
+#age,
+#city {
+    margin-bottom: 20px;
+}
+#age input,
+#city input {
+    width: 250px;
+    height: 35px;
+}
+#age label,
+#city label {
+    margin-right: 20px;
+}
+#addStatus div {
+    margin-left: 280px;
 }

@@ -1,8 +1,9 @@
 import "../css/Transfer.css";
 import useForm from "../useForm.js"; //custom Hooks
+import { useState } from "react";
 
 export default function Transfer(props) {
-    const [form, handleChange] = useForm({
+    const [form, handleChange, setForm] = useForm({
         sender_name: "",
         iban: "",
         amount: 0.0,
@@ -14,7 +15,21 @@ export default function Transfer(props) {
             minute: "numeric",
         }),
     });
+    const [msg, setMsg] = useState(false);
+
     function handleSubmit(evt) {
+        evt.preventDefault();
+        if (props.pause) {
+            setForm({
+                ...form,
+                sender_name: "",
+                iban: "",
+                purpose: "",
+                amount: 0,
+            });
+
+            return;
+        }
         console.log("handleSubmit", form);
         //verifie si le iban et augmenter les cout de 0.10cent
         fetch("/transfer.json", {
@@ -38,10 +53,14 @@ export default function Transfer(props) {
             })
             .then((erg) => {
                 props.setbalance(erg);
-                form.sender_name = "";
-                form.iban = "";
-                form.amount = 0.0;
-                form.purpose = "";
+                setMsg(true);
+                setForm({
+                    ...form,
+                    sender_name: "",
+                    iban: "",
+                    purpose: "",
+                    amount: 0,
+                });
             });
     }
     function handleClickPfeile() {
@@ -56,7 +75,12 @@ export default function Transfer(props) {
                     {props.first} {props.last}
                 </p>
                 <p>{props.iban}</p>
-                <p>Your account Balance: {props.balance} €</p>
+                <p>Your account balance: {props.balance} €</p>
+                {props.pause && (
+                    <p id="pauseAccount">
+                        Your account is paused. You can't make a transfer!
+                    </p>
+                )}
             </div>
             <div id="transfer_bereich">
                 <form onSubmit={handleSubmit}>
@@ -135,6 +159,7 @@ export default function Transfer(props) {
                     src="/assets/pfeile_oben.png"
                 ></img>
             </div>
+            {msg && <h2 id="successful">Transfer successful!😊</h2>}
         </div>
     );
 }

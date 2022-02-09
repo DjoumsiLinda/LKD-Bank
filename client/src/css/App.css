@@ -21,7 +21,7 @@
     height: 60px;
 }
 .app header {
-    background-color: rgba(0, 0, 255, 0.52);
+    background-color: brown;
     grid-column: 1/2;
     grid-row: 1/2;
     display: grid;

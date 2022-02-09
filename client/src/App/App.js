@@ -4,6 +4,8 @@ import { Component } from "react";
 
 import { connect } from "react-redux";
 import { receivedUsers } from "../redux/users/slice";
+import { setUserHook } from "../redux/users/slice";
+import { setUserInPause } from "../redux/users/slice";
 import { setbioHook } from "../redux/bio/slice";
 import { seturlHook } from "../redux/url/slice";
 import { setbalanceHook } from "../redux/balance/slice";
@@ -15,6 +17,8 @@ import Uploader from "./Uploader.js";
 import Transfer from "./Transfer.js";
 import Balance from "./Balance.js";
 import Credit from "./Credit.js";
+import Welcome from "../Home/Welcome";
+import Contact from "../Home/Contact";
 import Delete from "./Delete.js";
 
 let user = null;
@@ -29,7 +33,7 @@ const mapStateToProps = (state) => {
         user = { ...user, url: state.url };
     }
     if (state.balance && state.balance !== 0) {
-        user = { ...user, balance: state.balance.balance };
+        user = { ...user, balance: state.balance };
     }
     return { user };
 };
@@ -49,6 +53,8 @@ class App extends Component {
         this.open_close = this.open_close.bind(this);
         this.handleClickMain = this.handleClickMain.bind(this);
         this.setbalance = this.setbalance.bind(this);
+        this.setUser = this.setUser.bind(this);
+        this.setPause = this.setPause.bind(this);
         this.setbio = this.setbio.bind(this);
     }
     componentDidMount() {
@@ -75,7 +81,14 @@ class App extends Component {
         this.props.setbioHook(bio);
     }
     setbalance(balance) {
-        this.props.setbalanceHook(balance);
+        this.props.setbalanceHook(balance.balance);
+    }
+    setUser(user) {
+        this.props.setUserHook(user);
+    }
+    setPause(pause) {
+        console.log("Users:++++", pause);
+        this.props.setUserInPause(pause);
     }
     handleClickMain() {
         const classOnHome = document.querySelector("#overlayHome");
@@ -102,10 +115,9 @@ class App extends Component {
                     <div id="overlayHome">
                         <div className="arrow-up"></div>
                         <nav id="menuHome">
+                            <a href="/welcome">Home</a>
+                            <a href="/contact">Contact</a>
                             <a href="/home">Services</a>
-                            <a href="/home">Contact</a>
-                            <a href="/home">FAQ</a>
-                            <a href="/home">Consulting</a>
                         </nav>
                     </div>
                     <a href="/" id="home" onClick={this.handleHome}>
@@ -148,6 +160,7 @@ class App extends Component {
                                 first={user.first}
                                 last={user.last}
                                 balance={user.balance}
+                                pause={user.pause}
                                 setbalance={this.setbalance}
                             />
                         </Route>
@@ -157,11 +170,17 @@ class App extends Component {
                                 first={user.first}
                                 last={user.last}
                                 email={user.email}
+                                age={user.age}
+                                city={user.city}
+                                credit={user.credit || 0}
                                 status={user.status}
                                 bio={user.bio}
                                 iban={user.iban}
                                 setbio={this.setbio}
                                 componentVisible={this.componentVisible}
+                                setUser={this.setUser}
+                                pause={user.pause}
+                                setPause={this.setPause}
                             />
                         </Route>
                         <Route path="/logout">
@@ -169,6 +188,12 @@ class App extends Component {
                         </Route>
                         <Route path="/home">
                             <Startseite />
+                        </Route>
+                        <Route path="/welcome">
+                            <Welcome />
+                        </Route>
+                        <Route path="/contact">
+                            <Contact />
                         </Route>
                         <Route path="/delete">
                             <Delete />
@@ -180,6 +205,7 @@ class App extends Component {
                                 last={user.last}
                                 balance={user.balance}
                                 setbalance={this.setbalance}
+                                pause={this.state.pause}
                             />
                         </Route>
                         <Route path="/balance">
@@ -193,6 +219,7 @@ class App extends Component {
                         <Route path="/credit">
                             <Credit
                                 status={user.status}
+                                credit={user.credit}
                                 setbalance={this.setbalance}
                             />
                         </Route>
@@ -252,4 +279,6 @@ export default connect(mapStateToProps, {
     setbioHook,
     seturlHook,
     setbalanceHook,
+    setUserHook,
+    setUserInPause,
 })(App);

@@ -92,6 +92,13 @@ router.get("/logout.json", (req, res) => {
 });
 
 router.get("/delete.json", s3.s3deleteUrl, (req, res) => {
-    console.log("TODO");
+    db.deleteCredit(req.session.userId).then(() => {
+        db.deleteTransfer(req.session.userId).then(() => {
+            db.deleteUsers(req.session.userId).then(() => {
+                req.session.userId = undefined;
+                res.sendStatus(200);
+            });
+        });
+    });
 });
 module.exports = router;

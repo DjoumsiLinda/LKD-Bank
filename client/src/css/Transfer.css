@@ -1,27 +1,24 @@
 .transfer {
     font-size: 30px;
     width: 100%;
-    height: 120vh;
-    display: flex;
-    flex-direction: column;
-    justify-items: center;
-    align-items: center;
+    height: 110vh;
+    margin-left: 20%;
 }
 #user_info p {
-    margin-top: 20px;
+    margin-top: 30px;
 }
 #transfer_bereich {
     width: 70%;
-    margin-top: 50px;
+    margin-top: 70px;
     display: flex;
     flex-direction: column;
 }
 #transfer_bereich div {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 /*+++++++++++++++++++++++++++++++++++++++++++++ beneficiary*/
 #beneficiary label {
-    margin-right: 20px;
+    margin-right: 40px;
 }
 #beneficiary input {
     width: 50%;
@@ -29,7 +26,7 @@
 }
 /*+++++++++++++++++++++++++++++++++++++++++++++ iban*/
 #iban label {
-    margin-right: 20px;
+    margin-right: 215px;
 }
 #iban input {
     width: 50%;
@@ -41,7 +38,7 @@
     flex-direction: row;
 }
 #amount p {
-    margin-right: 20px;
+    margin-right: 190px;
 }
 #amount input {
     cursor: pointer;
@@ -68,7 +65,7 @@
     flex-direction: row;
 }
 #date p {
-    margin-right: 20px;
+    margin-right: 155px;
 }
 #date input {
     cursor: pointer;
@@ -90,7 +87,7 @@
     flex-direction: row;
 }
 #time p {
-    margin-right: 20px;
+    margin-right: 150px;
 }
 #time input {
     width: 20%;
@@ -99,12 +96,15 @@
     margin-right: 50px;
     height: 30px;
 }
-form button {
+.transfer form button {
+    margin-top: 10px;
     font-size: 25px;
     cursor: pointer;
     width: 120px;
-    cursor: 0;
     height: 35px;
     border: 2px solid black;
     background-color: greenyellow;
+}
+.transfer #successful {
+    margin-top: 50px;
 }
