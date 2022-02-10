@@ -108,3 +108,7 @@
 .transfer #successful {
     margin-top: 50px;
 }
+#pauseAccount {
+    font-size: 40px;
+    color: red;
+}

@@ -3,13 +3,20 @@
 
 # Finales Projekt: LKD~Bank
 
-was tun das Projekt
+with LKD~Bank has several functions like register, log in, delete your account, make transfers, check your balance, make a loan to the bank, pause your account (is impossible to execute a transfer), add a profile picture. In addition contains different annimations and more.
 
 # Features
 
 -   registration with firstname, lastname, email and password (with bcrypt crypted/encrypted)
 -   login and logout with reset password possibility
--   Testing with jest
+-   delete your account
+-   profile edit: edit name, age, picture, bio, .....
+-   contains different annimations (/home, /services)
+-   make transfers,
+-   check your balance,
+-   make a loan to the bank,
+-   pause your account (is impossible to execute a transfer)
+-   consult the chat and ask/answer question in the chat (/contact)
 
 futher Information:
 
@@ -26,38 +33,24 @@ futher Information:
 
 Anforderungen:
 
--   photo, first, last, Geburtsdatum, Geburtsort
+-   photo, first, last, city
 -   Status: Student, Arbeiter, Unternehmen. Beweise Herunterladen
--   Fur die Anmeldung sollte man zwischen email oder TAN wählen
--   Bestätigungscode per mail bekommen und eintippen.
 
 ### Login
 
-Anforderungen:
-
--   login durch emeil/TAN
--   Datenschutz chekbox akzeptieren
+-   login durch email
 
 ### Profile bearbeiten & Account löschen & Account anhalten
 
 ### Überweisung
 
--   Überweisung mit andere Banken kostet 0.10 cent
-
 ### Kredit anfordern
 
--   Student: max 1000 euro
--   Arbeiter: max 5000 euro
+-   Student: max 100 euro
+-   Arbeiter: max 200 euro
+-   Unternehmen: max 5000 euro
 
 ### Kontostand
-
-### Über das Unternehmen (LKD~Bank)
-
-#### Service und Kontakt
-
-#### Beratung
-
-### Sparrkonto/Bausparkasse
 
 # Technology
 

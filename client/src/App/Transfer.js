@@ -1,6 +1,6 @@
 import "../css/Transfer.css";
 import useForm from "../useForm.js"; //custom Hooks
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Transfer(props) {
     const [form, handleChange, setForm] = useForm({
@@ -15,6 +15,7 @@ export default function Transfer(props) {
             minute: "numeric",
         }),
     });
+    useEffect(() => console.log("+++++++++", props.pause, props.first));
     const [msg, setMsg] = useState(false);
 
     function handleSubmit(evt) {
@@ -27,7 +28,6 @@ export default function Transfer(props) {
                 purpose: "",
                 amount: 0,
             });
-
             return;
         }
         console.log("handleSubmit", form);
@@ -78,7 +78,8 @@ export default function Transfer(props) {
                 <p>Your account balance: {props.balance} €</p>
                 {props.pause && (
                     <p id="pauseAccount">
-                        Your account is paused. You can't make a transfer!
+                        Your account is paused. You can't make a transfer!{" "}
+                        <a href="/profile">here</a> to change it.
                     </p>
                 )}
             </div>

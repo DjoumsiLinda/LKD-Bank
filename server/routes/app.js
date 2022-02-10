@@ -101,4 +101,16 @@ router.get("/delete.json", s3.s3deleteUrl, (req, res) => {
         });
     });
 });
+router.post("/InPause.json", (req, res) => {
+    const { pause } = req.body;
+    db.setPauseInUsers(pause, req.session.userId)
+        .then((update) => {
+            res.json(update.rowCount);
+        })
+        .catch((err) => {
+            console.log(err);
+            res.sendStatus(500);
+        });
+});
+
 module.exports = router;

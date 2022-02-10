@@ -11,6 +11,7 @@ const login = require("./routes/login.js");
 const profileEdit = require("./routes/profileEdit.js");
 const transfer = require("./routes/transfer.js");
 const credit = require("./routes/credit.js");
+const messages = require("./routes/messages.js");
 const resetPassword = require("./routes/resetPassword.js");
 
 app.use(compression());
@@ -45,6 +46,7 @@ app.use(regis_part2);
 app.use(login);
 app.use(credit);
 app.use(transfer);
+app.use(messages);
 app.use(profileEdit);
 app.use(resetPassword);
 

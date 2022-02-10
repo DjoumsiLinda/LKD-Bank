@@ -58,10 +58,10 @@ export default function Profile(props) {
     function handleChangeStatus(evt) {
         setStatus(evt.target.value);
     }
-    function handlePauseAccount(evt) {
+    function handlePauseAccount() {
         // evt.preventDefault();
-        console.log("TODO", props.pause);
-        props.setPause(true);
+        console.log("+++:++++", props.pause);
+        props.setPause(!props.pause);
     }
     return (
         <section className="profile">
@@ -99,15 +99,7 @@ export default function Profile(props) {
                     </h2>
                     <div id="pause">
                         <h2>Put the account on pause</h2>
-                        {
-                            <label
-                                className="switch1"
-                                onClick={handlePauseAccount}
-                            >
-                                <input type="checkbox1" />
-                                <span className="slider1 round1"></span>
-                            </label>
-                            /*: (
+                        {props.pause ? (
                             <label
                                 className="switch"
                                 onClick={handlePauseAccount}
@@ -115,8 +107,15 @@ export default function Profile(props) {
                                 <input type="checkbox" />
                                 <span className="slider round"></span>
                             </label>
-                        )*/
-                        }
+                        ) : (
+                            <label
+                                className="switch"
+                                onClick={handlePauseAccount}
+                            >
+                                <input type="checkbox" defaultChecked />
+                                <span className="slider round"></span>
+                            </label>
+                        )}
                     </div>
 
                     <p>IBAN: {props.iban}</p>

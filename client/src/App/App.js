@@ -18,7 +18,7 @@ import Transfer from "./Transfer.js";
 import Balance from "./Balance.js";
 import Credit from "./Credit.js";
 import Welcome from "../Home/Welcome";
-import Contact from "../Home/Contact";
+import Contact from "./Contact.js";
 import Delete from "./Delete.js";
 
 let user = null;
@@ -68,6 +68,7 @@ class App extends Component {
             })
             .then((user) => {
                 this.props.receivedUsers(user);
+                console.log("PAUSE:+++", user.pause, user.first);
             });
     }
 
@@ -87,8 +88,20 @@ class App extends Component {
         this.props.setUserHook(user);
     }
     setPause(pause) {
-        console.log("Users:++++", pause);
-        this.props.setUserInPause(pause);
+        fetch("/InPause.json", {
+            method: "POST",
+            body: JSON.stringify({
+                pause: pause,
+            }),
+            headers: {
+                "content-type": "application/json",
+            },
+        }).then((res) => {
+            if (res.ok) {
+                this.props.setUserInPause(pause);
+                console.log("Users:++++", user.pause);
+            }
+        });
     }
     handleClickMain() {
         const classOnHome = document.querySelector("#overlayHome");
@@ -104,7 +117,6 @@ class App extends Component {
             classOnProfile.classList.remove("on");
         }
     }
-
     render() {
         if (!user) {
             return <p>Loading...</p>;
@@ -158,9 +170,9 @@ class App extends Component {
                             <Transfer
                                 iban={user.iban}
                                 first={user.first}
+                                pause={user.pause}
                                 last={user.last}
                                 balance={user.balance}
-                                pause={user.pause}
                                 setbalance={this.setbalance}
                             />
                         </Route>
@@ -205,7 +217,7 @@ class App extends Component {
                                 last={user.last}
                                 balance={user.balance}
                                 setbalance={this.setbalance}
-                                pause={this.state.pause}
+                                pause={user.pause}
                             />
                         </Route>
                         <Route path="/balance">

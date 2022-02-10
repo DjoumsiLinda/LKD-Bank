@@ -1,11 +1,101 @@
 .contact {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100%;
     width: 100%;
+    font-size: 30px;
 }
 .contact #begin {
+    margin: 50px;
     font-size: 30px;
     display: flex;
+    text-align: center;
+}
+.contact #begin a {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.contact .chat {
+    width: 70%;
+}
+#lastMessages {
+    margin-top: 5px;
+    min-height: 100px;
+    max-height: 300px;
+    width: 100%;
+    overflow-y: scroll;
+    background-color: white;
+    border: 2px solid chocolate;
+    display: flex;
+    /* to make latest messages always visible */
+    flex-direction: column-reverse;
+    margin-bottom: 20px;
+}
+
+#formId {
+    display: flex;
+    flex-direction: row;
+}
+#writeMessage textarea {
+    width: 100%;
+    height: 50px;
+    margin-right: 10px;
+}
+#writeMessage button {
+    font-size: 20px;
+    margin-top: 10px;
+    height: 30px;
+    cursor: pointer;
+    background-color: chartreuse;
+}
+.message {
+    margin-top: 5px;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 2px solid chocolate;
+}
+.message .first {
+    display: flex;
+    flex-direction: row;
+}
+
+.message img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+.message h2,
+.message p {
+    font-size: 15px;
+    margin-right: 10px;
+}
+.message .msg {
+    min-width: 200px;
+    max-width: 550px;
+    font-size: 15px;
+    color: blue;
+    flex-wrap: wrap;
+    width: 100%;
+    overflow-wrap: break-word; /*pour ceux qui ecrive sans espace. ceci permet le line breck*/
+}
+#addcomment {
+    font-size: 15px;
+}
+
+#moreComment {
+    margin-top: 2px;
+    width: 100%;
+    font-size: 15px;
+    margin-left: 7%;
+}
+#comment {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+#comment #coment {
+    font-style: italic;
 }

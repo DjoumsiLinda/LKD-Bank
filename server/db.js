@@ -39,7 +39,7 @@ module.exports.addStatusAndPass = (status, pass, id, iban, age, city) => {
 };
 module.exports.getUsers = (id) => {
     return db.query(
-        `SELECT id, first, last, age, city, email, url, bio, status, iban,balance, 
+        `SELECT id, first, last, age, city, pause, email, url, bio, status, iban,balance, 
         (select sum (amount) as credit from credit where users_id=$1 ) FROM users where id = $1;`,
         [id]
     );
@@ -133,7 +133,14 @@ module.exports.updateUsersWithoutPassword = (
 module.exports.deleteUsers = (id) => {
     return db.query(`delete from users where id=$1`, [id]);
 };
-
+module.exports.setPauseInUsers = (pause, id) => {
+    return db.query(
+        `UPDATE users
+        SET pause = $1
+        WHERE id = $2;`,
+        [pause, id]
+    );
+};
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ reset_password table
 module.exports.addCode = (email, code, users_id) => {
     return db.query(
@@ -199,4 +206,30 @@ module.exports.addCredit = (amount, users_id) => {
 };
 module.exports.deleteCredit = (id) => {
     return db.query(`delete from credit where users_id=$1`, [id]);
+};
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ messages
+module.exports.getLastChatMessages = () => {
+    return db.query(
+        `SELECT messages.id, messages.message, messages.created_at, messages.users_id, users.first,  users.last, users.url
+        FROM messages
+		JOIN users
+        ON users.id=messages.users_id ORDER BY messages.created_at DESC LIMIT 10;`
+    );
+};
+module.exports.addMessages = (message, users_id) => {
+    return db.query(
+        `INSERT INTO messages (message, users_id)
+        VALUES($1, $2)
+        RETURNING id, created_at;`,
+        [message, users_id]
+    );
+};
+module.exports.deleteMessages = (user_id) => {
+    return db.query(`delete from messages where users_id=$1`, [user_id]);
+};
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ comments
+module.exports.getComments = () => {
+    return db.query(
+        `SELECT comments.created_at,comments.messages_id,comments.id,comments.messages, users.first, users.last  from comments join users on users.id=comments.users_id;`
+    );
 };
