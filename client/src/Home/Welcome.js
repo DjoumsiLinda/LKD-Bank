@@ -9,7 +9,6 @@ export default function Welcome() {
         canvas.classList.add("rain");
         canvas.style.width = width;
         canvas.style.height = height;
-        console.log(canvas, width, height);
         document.querySelector("main #bienvenue").appendChild(canvas);
         initAnimation(width, height, canvas);
     });

@@ -4,10 +4,9 @@ export default function Delete() {
     useEffect(() => {
         fetch("/delete.json").then((res) => {
             if (res.ok) {
-                console.log("Bye");
                 location.replace("/");
             }
         });
     }, []);
-    return <div className="logout">Bye Bye</div>;
+    return <div className="logout">Thank you for trusting us</div>;
 }

@@ -4,10 +4,9 @@ export default function Logout() {
     useEffect(() => {
         fetch("/logout.json").then((res) => {
             if (res.ok) {
-                console.log("Bye");
                 location.replace("/login");
             }
         });
     }, []);
-    return <div className="logout">Bye Bye</div>;
+    return <div className="logout">See you soon</div>;
 }

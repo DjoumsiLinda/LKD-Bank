@@ -92,11 +92,15 @@ router.get("/logout.json", (req, res) => {
 });
 
 router.get("/delete.json", s3.s3deleteUrl, (req, res) => {
-    db.deleteCredit(req.session.userId).then(() => {
-        db.deleteTransfer(req.session.userId).then(() => {
-            db.deleteUsers(req.session.userId).then(() => {
-                req.session.userId = undefined;
-                res.sendStatus(200);
+    db.deleteComments(req.session.userId).then(() => {
+        db.deleteMessages(req.session.userId).then(() => {
+            db.deleteCredit(req.session.userId).then(() => {
+                db.deleteTransfer(req.session.userId).then(() => {
+                    db.deleteUsers(req.session.userId).then(() => {
+                        req.session.userId = undefined;
+                        res.sendStatus(200);
+                    });
+                });
             });
         });
     });

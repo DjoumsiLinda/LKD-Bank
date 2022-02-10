@@ -2,8 +2,9 @@
     font-size: 35px;
     display: flex;
     flex-direction: row;
-    justify-items: center;
-    align-content: center;
+    margin-top: 50px;
+    justify-content: center;
+    align-items: center;
 }
 #addBild {
     display: flex;

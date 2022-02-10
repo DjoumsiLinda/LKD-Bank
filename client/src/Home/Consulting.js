@@ -18,7 +18,6 @@ export default function Consulting() {
         </div>
     );
     function handleClickHome() {
-        console.log("You are Cklick");
         let slider = document.querySelector(".consulting #slider");
 
         let images = slider.getElementsByTagName("img");
@@ -49,7 +48,7 @@ export default function Consulting() {
             timeoutId = setTimeout(moveSlides, 5000);
         }
 
-        setTimeout(moveSlides, 5000);
+        setTimeout(moveSlides, 100);
 
         slider.addEventListener("transitionend", function (event) {
             if (event.target.classList.contains("exit")) {

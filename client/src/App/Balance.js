@@ -37,7 +37,7 @@ export default function Balance(props) {
             <p id="iban">{props.iban}</p>
             <p>Your account balance: {props.balance} €</p>
             {listTransfer.length === 0 ? (
-                <p>no transaction</p>
+                <p>List of your accomplished transfers: no transaction</p>
             ) : (
                 <div id="listTransfer">
                     <p>List of your accomplished transfers:</p>
@@ -61,7 +61,7 @@ export default function Balance(props) {
                                         <td>{transation.sender_name}</td>
                                         <td>{transation.iban}</td>
                                         <td>-{transation.amount}€</td>
-                                        <td>{transation.purpose}</td>
+                                        <td>{transation.purpose} </td>
                                         <td>
                                             {new Intl.DateTimeFormat([
                                                 "ban",
@@ -73,13 +73,17 @@ export default function Balance(props) {
                                             )}
                                         </td>
                                         <td>
-                                            {new Intl.DateTimeFormat("en-GB", {
-                                                timeStyle: "short",
-                                            }).format(
-                                                new Date(
-                                                    transation.transfer_date
-                                                )
-                                            ) || transation.transfer_time}
+                                            {transation.transfer_time ||
+                                                new Intl.DateTimeFormat(
+                                                    "en-GB",
+                                                    {
+                                                        timeStyle: "short",
+                                                    }
+                                                ).format(
+                                                    new Date(
+                                                        transation.transfer_date
+                                                    )
+                                                )}
                                         </td>
                                     </tr>
                                 </table>
@@ -89,7 +93,7 @@ export default function Balance(props) {
                 </div>
             )}
             {listReceived.length === 0 ? (
-                <p>no transaction</p>
+                <p>List of your received transfers: no transaction</p>
             ) : (
                 <div id="receivedTransfer">
                     <p>List of your received transfers:</p>
@@ -123,11 +127,17 @@ export default function Balance(props) {
                                             )}
                                         </td>
                                         <td>
-                                            {new Intl.DateTimeFormat("en-GB", {
-                                                timeStyle: "short",
-                                            }).format(
-                                                new Date(received.transfer_date)
-                                            ) || received.transfer_time}
+                                            {received.transfer_time ||
+                                                new Intl.DateTimeFormat(
+                                                    "en-GB",
+                                                    {
+                                                        timeStyle: "short",
+                                                    }
+                                                ).format(
+                                                    new Date(
+                                                        received.transfer_date
+                                                    )
+                                                )}
                                         </td>
                                     </tr>
                                 </table>

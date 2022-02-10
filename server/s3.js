@@ -28,7 +28,6 @@ module.exports.s3Uploader = (req, res, next) => {
         })
             .promise()
             .then(() => {
-                console.log("Upload successfull");
                 unlink(path);
                 next();
             })

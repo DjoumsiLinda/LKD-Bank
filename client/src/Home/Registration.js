@@ -18,7 +18,6 @@ export default function Registration() {
 
     function handleSubmit(evt) {
         evt.preventDefault();
-        console.log("handleSubmit");
 
         fetch("/registration.json", {
             method: "POST",
@@ -41,7 +40,6 @@ export default function Registration() {
                 }
             })
             .then((userId) => {
-                console.log("PART+++++++", userId);
                 setStep2(true);
                 setUserId(userId);
             });

@@ -19,11 +19,9 @@ export default function Profile(props) {
     function handleProfileEdit(evt) {
         evt.preventDefault();
         setEdit(!edit);
-        console.log("You want to edit your profile");
     }
     function handleSubmitProfileEdit(evt) {
         evt.preventDefault();
-        console.log("You want to update your profile");
         fetch("/profileEdit.json", {
             method: "POST",
             body: JSON.stringify({
@@ -50,8 +48,6 @@ export default function Profile(props) {
                     status: status,
                 };
                 props.setUser(obj);
-                console.log("ALLES OK", status);
-                //envoyer au parent le changement
             }
         });
     }
@@ -60,7 +56,6 @@ export default function Profile(props) {
     }
     function handlePauseAccount() {
         // evt.preventDefault();
-        console.log("+++:++++", props.pause);
         props.setPause(!props.pause);
     }
     return (

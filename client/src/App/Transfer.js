@@ -15,7 +15,7 @@ export default function Transfer(props) {
             minute: "numeric",
         }),
     });
-    useEffect(() => console.log("+++++++++", props.pause, props.first));
+
     const [msg, setMsg] = useState(false);
 
     function handleSubmit(evt) {
@@ -30,7 +30,6 @@ export default function Transfer(props) {
             });
             return;
         }
-        console.log("handleSubmit", form);
         //verifie si le iban et augmenter les cout de 0.10cent
         fetch("/transfer.json", {
             method: "POST",
@@ -52,7 +51,7 @@ export default function Transfer(props) {
                 }
             })
             .then((erg) => {
-                props.setbalance(erg);
+                props.setbalance(erg.balance);
                 setMsg(true);
                 setForm({
                     ...form,

@@ -1,8 +1,9 @@
 import "../css/Credit.css";
 import useForm from "../useForm.js"; //custom Hooks
+import { useState, useEffect } from "react";
 
 export default function Balance(props) {
-    const [form, handleChange] = useForm({
+    const [form, handleChange, setForm] = useForm({
         credit: 0.0,
     });
     let max = 0;
@@ -15,7 +16,6 @@ export default function Balance(props) {
     }
     function handleSubmit(evt) {
         evt.preventDefault();
-        console.log("Credit request", form.credit);
         fetch("/credit.json", {
             method: "POST",
             body: JSON.stringify({
@@ -30,9 +30,12 @@ export default function Balance(props) {
                     return res.json();
                 }
             })
-            .then(() => {
-                props.setbalance(form.credit);
-                form.credit = 0;
+            .then((credit) => {
+                props.setCredit(credit.credit);
+                setForm({
+                    ...form,
+                    credit: 0,
+                });
             });
     }
     return (
@@ -44,7 +47,7 @@ export default function Balance(props) {
                 <h2>{max}</h2>
                 <p> euro!</p>
             </div>
-            <p>Aktuel credit: {props.credit || 0}€</p>
+            <p>Current credit: {props.credit || 0}€</p>
 
             <form onSubmit={handleSubmit}>
                 <p>How much do you want to lend to the bank?</p>
@@ -54,6 +57,7 @@ export default function Balance(props) {
                         name="credit"
                         value={form.credit}
                         onChange={handleChange}
+                        min={0}
                         max={max - props.credit}
                         required
                     ></input>

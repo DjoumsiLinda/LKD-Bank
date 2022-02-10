@@ -12,7 +12,6 @@ export default function Contact() {
                 }
             })
             .then((messages) => {
-                console.log("I find ");
                 setMessages(messages);
             });
         fetch("/getComments.json")
@@ -33,7 +32,7 @@ export default function Contact() {
                     You can contact us <a href="/"> here </a>
                     or you can consult the Chat. There is surely an answer to
                     your question. If not <a href="/login">Log In</a>
-                    enjoy the best services
+                    and enjoy the best service.
                 </p>
             </div>
             <div className="chat">

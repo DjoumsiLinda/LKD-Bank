@@ -9,6 +9,7 @@ import { setUserInPause } from "../redux/users/slice";
 import { setbioHook } from "../redux/bio/slice";
 import { seturlHook } from "../redux/url/slice";
 import { setbalanceHook } from "../redux/balance/slice";
+import { setCreditHook } from "../redux/users/slice";
 
 import Startseite from "./Startseite.js";
 import Profile from "./Profile.js";
@@ -53,6 +54,7 @@ class App extends Component {
         this.open_close = this.open_close.bind(this);
         this.handleClickMain = this.handleClickMain.bind(this);
         this.setbalance = this.setbalance.bind(this);
+        this.setCredit = this.setCredit.bind(this);
         this.setUser = this.setUser.bind(this);
         this.setPause = this.setPause.bind(this);
         this.setbio = this.setbio.bind(this);
@@ -68,7 +70,6 @@ class App extends Component {
             })
             .then((user) => {
                 this.props.receivedUsers(user);
-                console.log("PAUSE:+++", user.pause, user.first);
             });
     }
 
@@ -82,7 +83,10 @@ class App extends Component {
         this.props.setbioHook(bio);
     }
     setbalance(balance) {
-        this.props.setbalanceHook(balance.balance);
+        this.props.setbalanceHook(balance);
+    }
+    setCredit(credit) {
+        this.props.setCreditHook(credit);
     }
     setUser(user) {
         this.props.setUserHook(user);
@@ -99,7 +103,6 @@ class App extends Component {
         }).then((res) => {
             if (res.ok) {
                 this.props.setUserInPause(pause);
-                console.log("Users:++++", user.pause);
             }
         });
     }
@@ -232,7 +235,7 @@ class App extends Component {
                             <Credit
                                 status={user.status}
                                 credit={user.credit}
-                                setbalance={this.setbalance}
+                                setCredit={this.setCredit}
                             />
                         </Route>
                     </BrowserRouter>
@@ -293,4 +296,5 @@ export default connect(mapStateToProps, {
     setbalanceHook,
     setUserHook,
     setUserInPause,
+    setCreditHook,
 })(App);

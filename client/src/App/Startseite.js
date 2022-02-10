@@ -18,7 +18,6 @@ export default function Startseite() {
         </div>
     );
     function handleClickHome() {
-        console.log("You are Cklick");
         let slider = document.querySelector(".Startseite #slider");
         let images = slider.getElementsByTagName("img");
         let transitioning = false;

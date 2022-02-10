@@ -2,8 +2,9 @@
 -- createdb lkd_bank
 -- psql -d lkd_bank -f server/tables/users.sql
 -- heroku pg:psql -f server/tables/users.sql
-DROP TABLE IF EXISTS messages
 DROP TABLE IF EXISTS credit;
+DROP TABLE IF EXISTS comments;
+DROP TABLE IF EXISTS messages;
 DROP TABLE IF EXISTS transfer;
 DROP TABLE IF EXISTS reset_password;
 DROP TABLE IF EXISTS users;

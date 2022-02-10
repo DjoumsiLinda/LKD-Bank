@@ -22,9 +22,7 @@ export default class ResetPassword extends Component {
     }
 
     handleChange(evt) {
-        console.log(evt.target.name, evt.target.value, this.state);
         this.setState({ [evt.target.name]: evt.target.value });
-        console.log(evt.target.name, evt.target.value, this.state);
     }
     handleSubmit(evt) {
         evt.preventDefault();
@@ -93,7 +91,6 @@ export default class ResetPassword extends Component {
         }
     }
     render() {
-        console.log("Pass", this.state.password);
         if (this.state.step === 1) {
             return (
                 <div id="reset">

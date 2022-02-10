@@ -8,6 +8,9 @@ export default function usersReducer(users = null, action) {
     } else if (action.type === "users/setUserInPause") {
         const newUser = { ...users, pause: action.payload.pause };
         return newUser;
+    } else if (action.type === "users/setCreditHook") {
+        const newUser = { ...users, credit: action.payload.credit };
+        return newUser;
     }
     return users;
 }
@@ -31,5 +34,11 @@ export function setUserInPause(pause) {
     return {
         type: "users/setUserInPause",
         payload: { pause },
+    };
+}
+export function setCreditHook(credit) {
+    return {
+        type: "users/setCreditHook",
+        payload: { credit },
     };
 }

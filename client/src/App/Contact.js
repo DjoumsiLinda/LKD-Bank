@@ -30,7 +30,6 @@ export default function Contact() {
     function handleClick(e) {
         e.preventDefault();
         if (message !== "") {
-            console.log("click: ", message);
             fetch("/addMessages.json", {
                 method: "POST",
                 body: JSON.stringify({

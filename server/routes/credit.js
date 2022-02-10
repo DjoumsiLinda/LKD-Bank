@@ -9,9 +9,11 @@ router.post("/credit.json", (req, res) => {
     }
     const id = req.session.userId;
     db.addCredit(amount, id)
-        .then((erg) => {
+        .then(() => {
             db.plusCredit(id, amount).then(() => {
-                res.json(erg.rows[0]);
+                db.getCredit(id).then((ergebnis) => {
+                    res.json(ergebnis.rows[0]);
+                });
             });
         })
         .catch((err) => {

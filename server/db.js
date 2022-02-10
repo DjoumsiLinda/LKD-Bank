@@ -200,12 +200,18 @@ module.exports.addCredit = (amount, users_id) => {
             amount,
             users_id)
         VALUES($1, $2)
-        RETURNING id;`,
+        RETURNING (select sum(amount) as credit from credit where users_id=$2);`,
         [amount, users_id]
     );
 };
 module.exports.deleteCredit = (id) => {
     return db.query(`delete from credit where users_id=$1`, [id]);
+};
+module.exports.getCredit = (id) => {
+    return db.query(
+        `select sum (amount) as credit from credit where users_id=$1 `,
+        [id]
+    );
 };
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ messages
 module.exports.getLastChatMessages = () => {
@@ -232,4 +238,7 @@ module.exports.getComments = () => {
     return db.query(
         `SELECT comments.created_at,comments.messages_id,comments.id,comments.messages, users.first, users.last  from comments join users on users.id=comments.users_id;`
     );
+};
+module.exports.deleteComments = (user_id) => {
+    return db.query(`delete from comments where users_id=$1`, [user_id]);
 };

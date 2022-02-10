@@ -31,7 +31,6 @@ export default function RegistrationPart2(props) {
 
     function handleSubmit(evt) {
         evt.preventDefault();
-        console.log("You want to Submit: ", pass, status);
         if (pass === "") {
             setErrorPass(true);
         } else if (status === "") {
@@ -56,7 +55,6 @@ export default function RegistrationPart2(props) {
             }).then((res) => {
                 if (res.ok) {
                     if (pic) {
-                        console.log("UPLOAD PICture");
                         const formData2 = new FormData();
                         formData2.append("pic", pic);
                         formData2.append("userId", props.userId);
@@ -102,7 +100,7 @@ export default function RegistrationPart2(props) {
                 </div>
 
                 <div id="addBild">
-                    <p>Do you want to add a Profile Picture?</p>{" "}
+                    <p>Do you want to add a profile picture?</p>
                     <input
                         type="checkbox"
                         id="yesno"
