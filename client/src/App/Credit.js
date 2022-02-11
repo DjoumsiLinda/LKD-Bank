@@ -7,9 +7,9 @@ export default function Balance(props) {
         credit: 0.0,
     });
     let max = 0;
-    if (props.status === "Student") {
+    if (props.status === "Student" || props.status === "student") {
         max = 100;
-    } else if (props.status === "Worker") {
+    } else if (props.status === "Worker" || props.status === "worker") {
         max = 1000;
     } else {
         max = 2000;

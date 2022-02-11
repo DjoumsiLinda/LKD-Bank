@@ -10,10 +10,10 @@ export default function Consulting() {
             <div id="slider">
                 <img src="/assets/geld3.png" className="onscreen" />
                 <img src="/assets/gold.png" />
-                <img src="/assets/geld1.png" />
-                <img src="/assets/sparrkonto.png" />
+                <img src="/assets/geld3.png" />
                 <img src="/assets/muenze.png" />
                 <img src="/assets/ueberweisen.png" />
+                <img src="/assets/sparrkonto.png" />
             </div>
         </div>
     );
@@ -45,7 +45,7 @@ export default function Consulting() {
 
             images[activeIdx].classList.add("onscreen");
 
-            timeoutId = setTimeout(moveSlides, 5000);
+            timeoutId = setTimeout(moveSlides, 1000);
         }
 
         setTimeout(moveSlides, 100);

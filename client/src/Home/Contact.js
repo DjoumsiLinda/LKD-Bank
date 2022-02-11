@@ -31,7 +31,7 @@ export default function Contact() {
                 <p>
                     You can contact us <a href="/"> here </a>
                     or you can consult the Chat. There is surely an answer to
-                    your question. If not <a href="/login">Log In</a>
+                    your question. If not <a href="/login">Log in</a>
                     and enjoy the best service.
                 </p>
             </div>
